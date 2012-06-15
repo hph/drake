@@ -1,10 +1,6 @@
 #!/usr/bin/python
 #coding=utf8
 
-# NOTES
-# PR hash:
-#os.urandom(16).encode('hex')
-
 import random
 import string
 
@@ -14,7 +10,8 @@ CHAR_SETS = [string.lowercase, string.uppercase, string.digits,
 
 
 def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
-                      min_objects=None, include=None, exclude=None):
+                      min_objects=None, max_objects=None, include=None,
+                      exclude=None):
     '''Generate a password based on various options.'''
     password = ''
     if base:
@@ -25,27 +22,36 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
     while len(password) < length:
         if include:
             char_sets[4] += include
-        # TODO See http://stackoverflow.com/questions/265960/best-way-to-strip-
-        # punctuation-from-a-string-in-python. Rewrite?
         if exclude:
             for char in exclude:
                 for i, char_set in enumerate(char_sets):
                     if char in char_set:
                         char_sets[i] = char_set.replace(char, '')
-        # TODO Add a max_objects argument.
         if min_objects:
             for i, item in enumerate(min_objects):
                 for _ in xrange(item):
                     password += random.choice(char_sets[i])
-            # If the following two lines were not present the output would have
-            # an equal number of characters from each character set if the
-            # length of the generated password is a multiple of the sum of the
-            # items in min_objects.
+            # If the following two lines were ommitted the output would have an
+            # equal number of characters from each character set if the length
+            # of the generated password is a multiple of the sum of the items 
+            # in min_objects.
             extra_length = length - sum(min_objects) 
             password += generate_password(length=extra_length)
         else:
             for _ in xrange(length):
                 password += random.choice(''.join(char_sets))
+        if max_objects:
+            count = {}
+            for char in password:
+                if char in count:
+                    count[char] += 1
+                else:
+                    count[char] = 1
+            for char in count:
+                if count[char] >= max_objects:
+                    # TODO Find a way to handle this outcome. Following line
+                    # for testing purposes.
+                    print char, count[char]
     # Shuffle the characters if necessary (depends on the options).
     password = ''.join(random.sample(password, length))
     if base:
@@ -82,7 +88,8 @@ def gauge_password_strength():
 
 def main():
     # TODO Add argparse commands. Current code only for testing purposes.
-    print 'Example output with the default options: %s' % generate_password()
+    print 'Example output with the default options:'
+    print generate_password(max_objects=2)
 
 
 if __name__ == '__main__':
