@@ -15,10 +15,10 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
     '''Generate a password based on various options.'''
     password = ''
     if base:
-        length -= len(base[0])
         # A substring of the password.
         base_string = base[0]
         base_length = len(base_string)
+        length -= base_length
         # The location of the substring in the password (various options).
         base_alignment = base[1]
     while len(password) < length:
