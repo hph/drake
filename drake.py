@@ -25,10 +25,12 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
         if include:
             # The fifth character set is intended for the space character and
             # all other characters that the user wants to be included in the
-            # characters sets.
-            # NOTE Only add characters to the fifth character set if they are
-            # not present in other character sets?
-            char_sets[4] += include
+            # characters sets. Only add characters if they are not present in
+            # any other set.
+            chars = ''.join(char_sets)
+            for char in include:
+                if char not in chars:
+                    char_sets[4] += include
         if exclude:
             for char in exclude:
                 for i, char_set in enumerate(char_sets):
@@ -97,7 +99,7 @@ def gauge_password_strength():
 def main():
     # TODO Add argparse commands. Current code only for testing purposes.
     print 'Example output with the default options:'
-    print generate_password(max_objects=2)
+    print generate_password()
 
 
 if __name__ == '__main__':
