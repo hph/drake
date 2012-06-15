@@ -16,11 +16,18 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
     password = ''
     if base:
         length -= len(base[0])
+        # A substring of the password.
         base_string = base[0]
         base_length = len(base_string)
+        # The location of the substring in the password (various options).
         base_alignment = base[1]
     while len(password) < length:
         if include:
+            # The fifth character set is intended for the space character and
+            # all other characters that the user wants to be included in the
+            # characters sets.
+            # NOTE Only add characters to the fifth character set if they are
+            # not present in other character sets?
             char_sets[4] += include
         if exclude:
             for char in exclude:
@@ -38,6 +45,7 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
             extra_length = length - sum(min_objects) 
             password += generate_password(length=extra_length)
         else:
+            # No special requirements, simply generate the password.
             for _ in xrange(length):
                 password += random.choice(''.join(char_sets))
         if max_objects:
@@ -52,7 +60,7 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
                     # TODO Find a way to handle this outcome. Following line
                     # for testing purposes.
                     print char, count[char]
-    # Shuffle the characters if necessary (depends on the options).
+    # Shuffle the characters in case it's necessary (depends on the options).
     password = ''.join(random.sample(password, length))
     if base:
         if base_alignment == 'left':
