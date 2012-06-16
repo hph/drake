@@ -191,6 +191,10 @@ def main():
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)
+    # NOTE This is pointless ... at the moment passwords can only be printed or
+    # saved to the clipboard so these options should be merged. The following
+    # case is ridiculous and pointless, but exists at the moment to prevent the
+    # password from being printed if the cloak option was used.
     elif not args.cloak:
         print passwords
 
