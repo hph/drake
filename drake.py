@@ -112,25 +112,25 @@ def main():
     parser.add_argument('-c', '--cloak', action='store_true',
                         help='''Cloak the user input if (prying eyes will not
                         see what you type).''')
-    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='string',
+    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
                         default=False,
                         help='''Obfuscate a string with random
                         characters.''')
-    parser.add_argument('-s', '--seed', nargs='?', metavar='string',
+    parser.add_argument('-s', '--seed', nargs='?', metavar='STR',
                         default=False,
                         help='''Enter a seed manually. The passwords will
                         always be the same if the same seed is used.''')
-    parser.add_argument('-l', '--length', nargs='?', metavar='number',
+    parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
                         type=int, default=16,
                         help='''Password length.''')
-    parser.add_argument('-n', '--number', nargs='?', metavar='number',
+    parser.add_argument('-n', '--number', nargs='?', metavar='NUM',
                         type=int, default=1,
                         help='''Number of passwords.''')
-    parser.add_argument('-i', '--include', nargs='?', metavar='characters',
+    parser.add_argument('-i', '--include', nargs='?', metavar='CHARS',
                         default=False,
                         help='''Include specified characters in the character
                         pool.''')
-    parser.add_argument('-e', '--exclude', nargs='?', metavar='characters',
+    parser.add_argument('-e', '--exclude', nargs='?', metavar='CHARS',
                         default=False,
                         help='''Exclude specified characters in the character
                         pool.''')
