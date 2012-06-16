@@ -2,9 +2,9 @@
 #coding=utf8
 
 import argparse
+import getpass
 import random
 import string
-from getpass import getpass as cloak_input
 
 
 CHAR_SETS = [string.lowercase, string.uppercase, string.digits,
@@ -139,7 +139,7 @@ def main():
 
     if args.cloak:
         global raw_input
-        raw_input = cloak_input
+        raw_input = getpass.getpass
     if args.length == None:
         args.length = int(raw_input('Enter the length of the password: '))
     if args.number == None:
