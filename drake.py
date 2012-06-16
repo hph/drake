@@ -128,6 +128,9 @@ def main():
                         default=False,
                         help='''Enter a seed manually. The passwords will
                         always be the same if the same seed is used.''')
+    parser.add_argument('-S', '--seeds', nargs='?', metavar='NUM',
+                        type=int, default=False,
+                        help='''Number of seeds.''')
     parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
                         type=int, default=16,
                         help='''Password length.''')
@@ -167,7 +170,14 @@ def main():
                           + 'or right): ')
         # XXX The string has to be shorter than the length of the password.
         args.obfuscate = [raw_input('Enter a string to obfuscate: '), align]
-    if args.seed == None:
+    if args.seeds == None:
+        args.seeds = int(raw_input('Enter number of seeds: '))
+    if args.seeds:
+        seeds = []
+        for i in xrange(args.seeds):
+            seeds.append(raw_input('Enter seed #%s: ' % str(i + 1)))
+        args.seed = ''.join(seeds)
+    elif args.seed == None:
         args.seed = raw_input('Enter a seed: ')
 
     passwords = []
