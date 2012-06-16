@@ -110,20 +110,21 @@ def gauge_password_strength():
 
 
 def main():
-    # TODO Add argparse commands. Current code only for testing purposes.
-    #print 'Example output with the default options:'
-    #print generate_password()
-    parser = argparse.ArgumentParser(description='Drake - password generation')
+    parser = argparse.ArgumentParser(description='Drake - password utilities')
 
+    # TODO Merge -c and -C, unecessary to have two options (and it makes little
+    # sense).
+    parser.add_argument('-c', '--cloak', action='store_true',
+                        help='''Cloak the user input and the program's output
+                        (input/output is not printed to the screen). Used with
+                        -C/--clipboard.''')
     # Obfuscate a string - used with generate_password() and the base option.
     # XXX See formatter_class in the argparse documentation.
-    parser.add_argument('-c', '--cloak', action='store_true',
-                        help='''Cloak the user input if (prying eyes will not
-                        see what you type).''')
     parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
                         default=False,
                         help='''Obfuscate a string with random
                         characters.''')
+    # TODO Perhaps merge -s and -S.
     parser.add_argument('-s', '--seed', nargs='?', metavar='STR',
                         default=False,
                         help='''Enter a seed manually. The passwords will
@@ -190,7 +191,7 @@ def main():
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)
-    else:
+    elif not args.cloak:
         print passwords
 
 
