@@ -3,6 +3,7 @@
 
 import argparse
 import getpass
+import gtk
 import random
 import string
 
@@ -84,6 +85,13 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
     return password
 
 
+def set_clipboard(contents):
+    '''Saves contents to the clipboard.'''
+    clipboard = gtk.clipboard_get()
+    clipboard.set_text(contents)
+    clipboard.store()
+
+
 def generate_wordlike_strings():
     '''Used with generate_password() to generate an easier to remember
     password.'''
@@ -134,6 +142,8 @@ def main():
                         default=False,
                         help='''Exclude specified characters in the character
                         pool.''')
+    parser.add_argument('-C', '--clipboard', action='store_true',
+                        help='''Save the password to the clipboard.''')
     # TODO Add arguments for minimum and maximum objects.
     args = parser.parse_args()
 
@@ -160,10 +170,18 @@ def main():
     if args.seed == None:
         args.seed = raw_input('Enter a seed: ')
 
+    passwords = []
     for _ in xrange(args.number):
-        print generate_password(base=args.obfuscate, seed=args.seed,
-                                length=args.length, include=args.include,
-                                exclude=args.exclude)
+        passwords.append(generate_password(base=args.obfuscate,
+                                           seed=args.seed,
+                                           length=args.length,
+                                           include=args.include,
+                                           exclude=args.exclude))
+    passwords = '\n'.join(passwords)
+    if args.clipboard:
+        set_clipboard(passwords)
+    else:
+        print passwords
 
 
 if __name__ == '__main__':
