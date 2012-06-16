@@ -1,8 +1,10 @@
 #!/usr/bin/python
 #coding=utf8
 
+import argparse
 import random
 import string
+from getpass import getpass as cloak_input
 
 
 CHAR_SETS = [string.lowercase, string.uppercase, string.digits,
@@ -21,6 +23,9 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
         length -= base_length
         # The location of the substring in the password (various options).
         base_alignment = base[1]
+    # NOTE Perhaps necessary to move this.
+    if seed:
+        random.seed(seed)
     while len(password) < length:
         if include:
             # The fifth character set is intended for the space character and
@@ -98,8 +103,67 @@ def gauge_password_strength():
 
 def main():
     # TODO Add argparse commands. Current code only for testing purposes.
-    print 'Example output with the default options:'
-    print generate_password()
+    #print 'Example output with the default options:'
+    #print generate_password()
+    parser = argparse.ArgumentParser(description='Drake - password generation')
+
+    # Obfuscate a string - used with generate_password() and the base option.
+    # XXX See formatter_class in the argparse documentation.
+    parser.add_argument('-c', '--cloak', action='store_true',
+                        help='''Cloak the user input if (prying eyes will not
+                        see what you type).''')
+    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='string',
+                        default=False,
+                        help='''Obfuscate a string with random
+                        characters.''')
+    parser.add_argument('-s', '--seed', nargs='?', metavar='string',
+                        default=False,
+                        help='''Enter a seed manually. The passwords will
+                        always be the same if the same seed is used.''')
+    parser.add_argument('-l', '--length', nargs='?', metavar='number',
+                        type=int, default=16,
+                        help='''Password length.''')
+    parser.add_argument('-n', '--number', nargs='?', metavar='number',
+                        type=int, default=1,
+                        help='''Number of passwords.''')
+    parser.add_argument('-i', '--include', nargs='?', metavar='characters',
+                        default=False,
+                        help='''Include specified characters in the character
+                        pool.''')
+    parser.add_argument('-e', '--exclude', nargs='?', metavar='characters',
+                        default=False,
+                        help='''Exclude specified characters in the character
+                        pool.''')
+    # TODO Add arguments for minimum and maximum objects.
+    args = parser.parse_args()
+
+    if args.cloak:
+        global raw_input
+        raw_input = cloak_input
+    if args.length == None:
+        args.length = int(raw_input('Enter the length of the password: '))
+    if args.number == None:
+        args.number = int(raw_input('Enter the number of passwords: '))
+    if args.include == None:
+        args.include = raw_input('Enter characters to be included: ')
+    if args.exclude == None:
+        args.exclude = raw_input('Enter characters to be excluded: ')
+    if args.obfuscate:
+        # Parse the obfuscate option into something generate_password()
+        # understands.
+        args.obfuscate = args.obfuscate.split(',') 
+    elif args.obfuscate == None:
+        align = raw_input('Enter an alignment for the obfuscated string (left '
+                          + 'or right): ')
+        # XXX The string has to be shorter than the length of the password.
+        args.obfuscate = [raw_input('Enter a string to obfuscate: '), align]
+    if args.seed == None:
+        args.seed = raw_input('Enter a seed: ')
+
+    for _ in xrange(args.number):
+        print generate_password(base=args.obfuscate, seed=args.seed,
+                                length=args.length, include=args.include,
+                                exclude=args.exclude)
 
 
 if __name__ == '__main__':
