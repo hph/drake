@@ -101,11 +101,25 @@ def generate_salt(bits=128):
     return os.urandom(bytes).encode('hex')
 
 
-def hash_password(password, salt=generate_salt()):
+def hash_password(password, salt):
     '''Hash the password and save it in the database.'''
-    hashed = hashlib.sha256(salt + password).hexdigest()
-    with open('.pwdhashes', 'w') as file:
+    return hashlib.sha256(salt + password).hexdigest()
+
+
+def save_hash(data, filename='.pwdhashes'):
+    '''Save the hash to a file.'''
+    with open(filename, 'w') as file:
         file.write(salt + ' ' + hashed)
+
+
+def validate(password, filename='.pwdhashes'):
+    '''Validate the password entered with the salt and hash in the file.'''
+    with open(filename, 'r') as file:
+        for line in file:
+            salt, hashed_password = line.split()
+            new_hash = hash_password(password, salt=salt)
+            if new_hash == hashed_password:
+                return True
 
 
 def generate_wordlike_strings():
@@ -217,4 +231,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    hash_password('bingo')
