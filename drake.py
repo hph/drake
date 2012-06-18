@@ -4,6 +4,8 @@
 import argparse
 import getpass
 import gtk
+import hashlib
+import os
 import random
 import string
 
@@ -90,6 +92,20 @@ def set_clipboard(contents):
     clipboard = gtk.clipboard_get()
     clipboard.set_text(contents)
     clipboard.store()
+
+
+def generate_salt(bits=128):
+    '''Generate a salt using a cryptologically secure pseudorandom number
+    generator.'''
+    bytes = int(bits / 16.0)
+    return os.urandom(bytes).encode('hex')
+
+
+def hash_password(password, salt=generate_salt()):
+    '''Hash the password and save it in the database.'''
+    hashed = hashlib.sha256(salt + password).hexdigest()
+    with open('.pwdhashes', 'w') as file:
+        file.write(salt + ' ' + hashed)
 
 
 def generate_wordlike_strings():
@@ -201,3 +217,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    hash_password('bingo')
