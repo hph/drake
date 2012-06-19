@@ -109,7 +109,7 @@ def hash_password(password, salt):
 def save_hash(data, filename='.pwdhashes'):
     '''Save the hash to a file.'''
     with open(filename, 'w') as file:
-        file.write(salt + ' ' + hashed)
+        file.write(' '.join([salt, hashed]))
 
 
 def validate(password, filename='.pwdhashes'):
