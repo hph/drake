@@ -129,7 +129,8 @@ def generate_wordlike_strings():
 
 
 def list_characters():
-    '''According to phonetic alphabet tables or common words.'''
+    '''List characters according to phonetic alphabet tables or common
+    words.'''
     pass
 
 
