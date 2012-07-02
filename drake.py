@@ -97,7 +97,7 @@ def set_clipboard(contents):
 def generate_salt(bits=128):
     '''Generate a salt using a cryptologically secure pseudorandom number
     generator.'''
-    bytes = int(bits / 16.0)
+    bytes = int(bits / 8.0)
     return os.urandom(bytes).encode('hex')
 
 
