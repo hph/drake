@@ -87,6 +87,10 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
     return password
 
 
+def get_clipboard():
+    '''Gets the current contents of the clipboard.'''
+    return gtk.clipboard_get().wait_for_text()
+
 def set_clipboard(contents):
     '''Saves contents to the clipboard.'''
     clipboard = gtk.clipboard_get()
@@ -179,15 +183,25 @@ def main():
                         pool.''')
     parser.add_argument('-C', '--clipboard', action='store_true',
                         help='''Save the password to the clipboard.''')
+    parser.add_argument('len', nargs='?', metavar='length',
+                        type=int, default=None,
+                        help='''Password length.''')
+    parser.add_argument('num', nargs='?', metavar='number',
+                        type=int, default=None,
+                        help='''Number of passwords.''')
     # TODO Add arguments for minimum and maximum objects.
     args = parser.parse_args()
 
     if args.cloak:
         global raw_input
         raw_input = getpass.getpass
-    if args.length == None:
+    if args.len:
+        args.length = args.len
+    elif args.length == None:
         args.length = int(raw_input('Enter the length of the password: '))
-    if args.number == None:
+    if args.num:
+        args.number = args.num
+    elif args.number == None:
         args.number = int(raw_input('Enter the number of passwords: '))
     if args.include == None:
         args.include = raw_input('Enter characters to be included: ')
