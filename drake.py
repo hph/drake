@@ -88,7 +88,7 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
 
 
 def get_clipboard():
-    '''Gets the current contents of the clipboard.'''
+    '''Return the current contents of the clipboard.'''
     return gtk.clipboard_get().wait_for_text()
 
 def set_clipboard(contents):
