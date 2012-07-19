@@ -8,6 +8,7 @@ import hashlib
 import os
 import random
 import string
+import sys
 
 
 CHAR_SETS = [string.lowercase, string.uppercase, string.digits,
@@ -126,6 +127,20 @@ def validate(password, filename='.pwdhashes'):
                 return True
 
 
+def get_input(query, type='str'):
+    '''Return input as a string or an integer.'''
+    try:
+        if type == 'str':
+            return raw_input(query)
+        elif type == 'int':
+            return int(raw_input(query))
+    except ValueError:
+        print 'Integer required.'
+        return get_input(query, 'int')
+    except (KeyboardInterrupt, EOFError):
+        sys.exit()
+
+
 def generate_wordlike_strings():
     '''Used with generate_password() to generate an easier to remember
     password.'''
@@ -164,9 +179,6 @@ def main():
                         default=False,
                         help='''Enter a seed manually. The passwords will
                         always be the same if the same seed is used.''')
-    parser.add_argument('-S', '--seeds', nargs='?', metavar='NUM',
-                        type=int, default=False,
-                        help='''Number of seeds.''')
     parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
                         type=int, default=16,
                         help='''Password length.''')
@@ -198,38 +210,37 @@ def main():
     if args.len:
         args.length = args.len
     elif args.length == None:
-        args.length = int(raw_input('Enter the length of the password: '))
+        args.length = get_input('Enter the length of the password: ', 'int')
     if args.num:
         args.number = args.num
     elif args.number == None:
-        args.number = int(raw_input('Enter the number of passwords: '))
+        args.number = get_input('Enter the number of passwords: ', 'int')
     if args.include == None:
-        args.include = raw_input('Enter characters to be included: ')
+        args.include = get_input('Enter characters to be included: ')
     if args.exclude == None:
-        args.exclude = raw_input('Enter characters to be excluded: ')
+        args.exclude = get_input('Enter characters to be excluded: ')
     if args.obfuscate:
         # Parse the obfuscate option into something generate_password()
         # understands.
         args.obfuscate = args.obfuscate.split(',') 
     elif args.obfuscate == None:
-        align = raw_input('Enter an alignment for the obfuscated string (left '
-                          + 'or right): ')
+        align = get_input('Enter an alignment for the obfuscated string (left '
+                          'or right): ')
         # XXX The string has to be shorter than the length of the password.
-        args.obfuscate = [raw_input('Enter a string to obfuscate: '), align]
-    if args.seeds == None:
-        args.seeds = int(raw_input('Enter number of seeds: '))
-    if args.seeds:
+        args.obfuscate = [get_input('Enter a string to obfuscate: '), align]
+    if args.seed == None:
+        seed_num = get_input('Enter number of seeds: ', 'int')
         seeds = []
-        for i in xrange(args.seeds):
-            seeds.append(raw_input('Enter seed #%s: ' % str(i + 1)))
-        args.seed = ''.join(seeds)
-    elif args.seed == None:
-        args.seed = raw_input('Enter a seed: ')
+        for i in xrange(seed_num):
+            seeds.append(get_input('Enter seed #%s: ' % str(i + 1)))
+        seed = ''.join(seeds)
+    else:
+        seed = args.seed
 
     passwords = []
     for _ in xrange(args.number):
         passwords.append(generate_password(base=args.obfuscate,
-                                           seed=args.seed,
+                                           seed=seed,
                                            length=args.length,
                                            include=args.include,
                                            exclude=args.exclude))
