@@ -239,7 +239,7 @@ def main():
     if args.seeds is None:
         if args.interactive:
             args.seeds = get_input('Enter the number of seeds: ', 'int')
-    if args.seed is None or isinstance(args.seeds, int):
+    if (args.seed is None) or args.seeds is not False:
         if args.interactive:
             if args.seeds is False or args.seeds == 1:
                 args.seed = get_input('Enter the seed: ')
@@ -256,8 +256,10 @@ def main():
     if not args.seed:
         args.seed = None
     passwords = []
+    # Necessary here if there are more than one passwords. Fix later.
+    random.seed(args.seed)
     for _ in xrange(args.number):
-        passwords.append(generate_password(seed=args.seed, length=args.length))
+        passwords.append(generate_password(length=args.length))
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)
