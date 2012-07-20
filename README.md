@@ -21,14 +21,17 @@ an overview of the currently available features.
 Setup
 -----
 ### Linux
-Copy and paste the following commands into a terminal window:
+Download drake:
     
-    git clone git://github.com/haukurpallh/drake.git
-    cp -R drake/ ~/.drake
-    chmod +x ~/.drake/drake.py
-    sudo ln -s ~/.drake/drake.py /usr/bin/drake
+    git clone git://github.com/haukurpallh/drake.git & cd drake
 
-For the changes to take effect you must open a new terminal window.
+Install drake:
+
+    python setup.py install
+
+Uninstall drake:
+
+    python setup.py uninstall
 
 Usage examples
 --------------
