@@ -6,10 +6,12 @@ and to be able to do it on any computer without storing any of the passwords.
 The way this is accomplished is by using a pseudo-random generator to generate
 passwords. Pseudo-random generators need an input called 'seed' or otherwise
 they would always return the same number. By combining a master password, such
-as 'bingo' (which is by the way a very, very weak password) and 'gmail' one has
-the seed 'bingogmail' which can be used to generate a 16-character long,
-extremely secure password (95¹⁶ ≈ 4,4 · 10³¹ possible passwords for the default
-settings).
+as 'bingo' and 'gmail' one has the seed 'bingogmail' which can be used to
+generate a 16-character long, extremely secure password (95¹⁶ ≈ 4,4 · 10³¹
+possible passwords for the default settings). Note that the master password
+should be longer than the example given above and it should include uppercase
+and lowercase characters, digits and punctuation symbols including empty space
+(' ').
 
 The program is fully functional in this respect, but other features have yet to
 be implemented.
