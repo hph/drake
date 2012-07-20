@@ -3,7 +3,7 @@ drake
 Various password and encryption utilities with a command-line interface.
 
 See [Usage examples](https://github.com/haukurpallh/drake#usage-examples) for
-an overview of the features.
+an overview of the currently available features.
 
 Setup
 -----
