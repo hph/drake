@@ -210,23 +210,16 @@ def main():
         raw_input = getpass.getpass
         # For obvious reasons we don't want to print the password in plaintext.
         args.clipboard = True
-    # The -o and -g options are not supposed to interact with any options.
-    if args.obfuscate is None:
+    # The -o and -g options are not supposed to interact with any options, thus
+    # we exit the program.
+    if any([args.obfuscate is None, args.obfuscate is not False]):
         if args.interactive:
-            obfuscate(get_input('Enter the password to obfuscate: '))
-        else:
-            obfuscate(args.obfuscate)
-        sys.exit()
-    elif args.obfuscate is not False:
+            args.obfuscate = get_input('Enter the password to obfuscate: ')
         obfuscate(args.obfuscate)
         sys.exit()
-    if args.gauge is None:
+    if any([args.gauge is None, args.gauge is not False]):
         if args.interactive:
-            gauge_password_strength(get_input('Enter the password: '))
-        else:
-            gauge_password_strength(args.gauge)
-        sys.exit()
-    elif args.gauge is not False:
+            args.gauge = get_input('Enter the password: ')
         gauge_password_strength(args.gauge)
         sys.exit()
     if args.length is None:
@@ -239,7 +232,7 @@ def main():
     if args.seeds is None:
         if args.interactive:
             args.seeds = get_input('Enter the number of seeds: ', 'int')
-    if (args.seed is None) or args.seeds is not False:
+    if args.seed is None or args.seeds is not False:
         if args.interactive:
             if args.seeds is False or args.seeds == 1:
                 args.seed = get_input('Enter the seed: ')
