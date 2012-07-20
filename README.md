@@ -1,10 +1,10 @@
 drake
 =====
-The main reason this program was written in the first place was to be able to
-easily generate unique and secure passwords for every website one might need to
-and to be able to do it on any computer without storing any of the passwords.
+The main reason this program was written to be able to easily generate unique
+and secure passwords for any and every website one might need a password for
+and to be able to do it on any computer without storing the passwords.
 The way this is accomplished is by using a pseudo-random generator to generate
-passwords. Pseudo-random generators need an input called 'seed' or otherwise
+passwords. Pseudo-random generators need an input called 'seeds' or otherwise
 they would always return the same number. By combining a master password, such
 as 'bingo' and 'gmail' one has the seed 'bingogmail' which can be used to
 generate a 16-character long, extremely secure password (95¹⁶ ≈ 4,4 · 10³¹
