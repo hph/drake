@@ -42,4 +42,44 @@ install the program) and type `drake -h` to invoke the help message:
       -C, --cloak              Hide the input and the output. The password(s)
                                are saved to the clipboard.
 
-This message lists all the available options.
+This message lists all the available options at this time. If no option is
+specified, the output is a 16-character long password containing all printable
+characters and space (95 characters total):
+
+    $ drake
+    R&Kp$A/>plqe]c<j
+
+The main point of the program is to generate passwords based on a seeds. Let's
+explore various methods to generate a password for your Gmail account:
+
+    $ drake -iS
+    Enter the number of seeds: 2
+    Enter seed #1: MASTER_PASSWORD
+    Enter seed #2: GMAIL_ACCOUNT
+    uYH`}t5;SKmtl{![
+
+Where the first seed is your master password, to be used with each and every
+password you want to generate and the second seed is your Gmail address. You
+can also specify the number of seeds directly: `drake -iS 2`. Note that if you
+combine options (`-iS` instead of `-i -S`) only the last one may accept a
+value. For example, `-Si` would not work as `-S` can accept a value. Anyway, a
+faster way to do the same thing would be the following:
+
+    $ drake -s MASTER_PASSWORDGMAIL_ACCOUNT
+    uYH`}t5;SKmtl{![
+
+By skipping the `-i` option the seed is visible in your bash history but if
+that is not a problem this method is faster. Also note the difference between
+`-S` and `-s`, the second of which was used here. In the previous example we
+didn't need to enter a `-s` flag because it's implied with `-S` (if there is a
+number of seeds, there must be a seed). If you want to enter the seed in this
+way, you may need to surround the seed with quotes if it contains characters
+such as $ (which are interpreted by the shell). A more secure method (nothing
+visible in the history) would be:
+
+    $ drake -is
+    Enter the seed: MASTER_PASSWORDGMAIL_ACCOUNT
+    Bo9&"mEnD*}"az@1
+
+However, this method requires user input, unlike the previous one, so it can't
+be included in a separate program (for example, a web app).
