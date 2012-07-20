@@ -15,11 +15,12 @@ Copy and paste the following commands into a terminal window:
     chmod +x ~/.drake/drake.py
     sudo ln -s ~/.drake/drake.py /usr/bin/drake
 
+For the changes to take effect you must open a new terminal window.
+
 Usage examples
 --------------
 ### Basic usage
-Open a new terminal window (changes won't take effect on the window you used to
-install the program) and type `drake -h` to invoke the help message:
+Type `drake -h` to invoke the help message:
 
     $ drake -h
     usage: drake.py [-h] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i] [-c]
