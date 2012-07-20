@@ -40,9 +40,12 @@ install the program) and type `drake -h` to invoke the help message:
       -C, --cloak              Hide the input and the output. The password(s)
                                are saved to the clipboard.
 
-This message lists all the available options at this time. If no option is
-specified, the output is a 16-character long password containing all printable
-characters and space (95 characters total):
+This message lists all the available options at this time. The brackets mean
+that what's inside them is optional. If you run `drake -l` for example, the
+`-l` flag is ignored because it doesn't have a value (as opposed to `drake -l
+16`). However, `drake -il` will assume interactive mode and ask for a value. If
+no option is specified, the output is a 16-character long password containing
+all printable characters and space (95 characters total):
 
     $ drake
     R&Kp$A/>plqe]c<j
