@@ -21,22 +21,25 @@ Usage examples
 --------------
 ### Basic usage
 Open a new terminal window (changes won't take effect on the window you used to
-install the program) and type `drake`:
+install the program) and type `drake -h` to invoke the help message:
 
-    $ drake
-    NGM'${yrKJd,31&&
+    $ drake -h
+    usage: drake.py [-h] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i] [-c]
+                    [-C]
 
-The `$` symbol is just the prompt, do not type it. The second line contains a
-random sixteen-character password. To print control the length of the password
-and the number of printed passwords, you could do something like `drake 20 5`
-for five twenty-character passwords:
+    drake - password and encryption utilities
 
-    $ drake 20 5
-    vDT/x9Zi(U67aPR:<C8^
-    G'A*x1pasYKUG$/Qz0"H
-    9j]o49mT`d]@3HbcFq82
-    `r"fS}.>x2\U;"IO>RVb
-    ;!fPRV(Q0H=B'`A]hCxC
+    optional arguments:
+      -h, --help               show this help message and exit
+      -l [NUM], --length [NUM] Password length. The default is 16.
+      -n [NUM], --number [NUM] Number of passwords. The default is 1.
+      -S [NUM], --seeds [NUM]  Number of seeds. The default is 1.
+      -s [STR], --seed [STR]   The seed for the pseudo-random generator.
+      -i, --interactive        Enter the necessary data interactively. By
+                               default all data is entered via the options.
+      -c, --clipboard          Save the password(s) to the clipboard. This
+                               option is unnecessary with -C or --cloak.
+      -C, --cloak              Hide the input and the output. The password(s)
+                               are saved to the clipboard.
 
-There are more options which will be documented later. Type `drake -h` to see
-all the options.
+This message lists all the available options.
