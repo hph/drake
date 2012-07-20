@@ -1,7 +1,5 @@
 drake
 =====
-Various password and encryption utilities with a command-line interface.
-
 The main reason this program was written in the first place was to be able to
 easily generate unique and secure passwords for every website one might need to
 and to be able to do it on any computer without storing any of the passwords.
@@ -13,6 +11,8 @@ the seed 'bingogmail' which can be used to generate a 16-character long,
 extremely secure password (95¹⁶ ≈ 4,4 · 10³¹ possible passwords for the default
 settings).
 
+The program is fully functional in this respect, but other features have yet to
+be implemented.
 See [Usage examples](https://github.com/haukurpallh/drake#usage-examples) for
 an overview of the currently available features.
 
