@@ -141,6 +141,51 @@ def get_input(query, type='str'):
         sys.exit()
 
 
+def obfuscate(password):
+    '''Return obfuscated password.'''
+    pass
+
+
+def gauge_password_strength(password):
+    '''Gauge the strength of the input password. Output could be boolean,
+    numeric or verbose depending on the options.'''
+    pass
+
+
+def parse_args():
+    '''Return parsed arguments.'''
+    parser = argparse.ArgumentParser(description='drake - password and '
+                                                 'encryption utilities')
+    parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
+                        default=False, type=int,
+                        help='''Password length. The default is 16.''')
+    parser.add_argument('-n', '--number', nargs='?', metavar='NUM',
+                        default=False, type=int,
+                        help='''Number of passwords. The default is 1.''')
+    parser.add_argument('-S', '--seeds', nargs='?', metavar='NUM',
+                        default=False, type=int,
+                        help='''Number of seeds. The default is 1.''')
+    parser.add_argument('-s', '--seed', nargs='?', metavar='STR',
+                        default=False,
+                        help='''The seed for the pseudo-random generator.''')
+    parser.add_argument('-i', '--interactive', action='store_true',
+                        help='''Enter the necessary data interactively. By
+                        default all data is entered via the options.''')
+    parser.add_argument('-c', '--clipboard', action='store_true',
+                        help='''Save the password(s) to the clipboard. This
+                        option is unnecessary with -C or --cloak.''')
+    parser.add_argument('-C', '--cloak', action='store_true',
+                        help='''Hide the input and the output. The password(s)
+                        are saved to the clipboard.''')
+    parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Gauge the strength of an input password.''')
+    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Obfuscate an input password.''')
+    return parser.parse_args()
+
+
 def generate_wordlike_strings():
     '''Used with generate_password() to generate an easier to remember
     password.'''
@@ -153,104 +198,69 @@ def list_characters():
     pass
 
 
-def gauge_password_strength():
-    '''Gauge the strength of the input password. Output could be boolean,
-    numeric or verbose depending on the options.'''
-    pass
-
-
 def main():
-    parser = argparse.ArgumentParser(description='Drake - password utilities')
-
-    # TODO Merge -c and -C, unecessary to have two options (and it makes little
-    # sense).
-    parser.add_argument('-c', '--cloak', action='store_true',
-                        help='''Cloak the user input and the program's output
-                        (input/output is not printed to the screen). Used with
-                        -C/--clipboard.''')
-    # Obfuscate a string - used with generate_password() and the base option.
-    # XXX See formatter_class in the argparse documentation.
-    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
-                        default=False,
-                        help='''Obfuscate a string with random
-                        characters.''')
-    # TODO Perhaps merge -s and -S.
-    parser.add_argument('-s', '--seed', nargs='?', metavar='STR',
-                        default=False,
-                        help='''Enter a seed manually. The passwords will
-                        always be the same if the same seed is used.''')
-    parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
-                        type=int, default=16,
-                        help='''Password length.''')
-    parser.add_argument('-n', '--number', nargs='?', metavar='NUM',
-                        type=int, default=1,
-                        help='''Number of passwords.''')
-    parser.add_argument('-i', '--include', nargs='?', metavar='CHARS',
-                        default=False,
-                        help='''Include specified characters in the character
-                        pool.''')
-    parser.add_argument('-e', '--exclude', nargs='?', metavar='CHARS',
-                        default=False,
-                        help='''Exclude specified characters in the character
-                        pool.''')
-    parser.add_argument('-C', '--clipboard', action='store_true',
-                        help='''Save the password to the clipboard.''')
-    parser.add_argument('len', nargs='?', metavar='length',
-                        type=int, default=None,
-                        help='''Password length.''')
-    parser.add_argument('num', nargs='?', metavar='number',
-                        type=int, default=None,
-                        help='''Number of passwords.''')
-    # TODO Add arguments for minimum and maximum objects.
-    args = parser.parse_args()
-
+    # XXX There are patterns in the following code, such that it could be
+    # structured as a function. This will do for now, but it would be better to
+    # do something as it is very cluttered, even though only the basic features
+    # are present.
+    args = parse_args()
     if args.cloak:
         global raw_input
+        # Use getpass instead of raw_input to hide the input from prying eyes.
         raw_input = getpass.getpass
-    if args.len:
-        args.length = args.len
-    elif args.length == None:
-        args.length = get_input('Enter the length of the password: ', 'int')
-    if args.num:
-        args.number = args.num
-    elif args.number == None:
-        args.number = get_input('Enter the number of passwords: ', 'int')
-    if args.include == None:
-        args.include = get_input('Enter characters to be included: ')
-    if args.exclude == None:
-        args.exclude = get_input('Enter characters to be excluded: ')
-    if args.obfuscate:
-        # Parse the obfuscate option into something generate_password()
-        # understands.
-        args.obfuscate = args.obfuscate.split(',') 
-    elif args.obfuscate == None:
-        align = get_input('Enter an alignment for the obfuscated string (left '
-                          'or right): ')
-        # XXX The string has to be shorter than the length of the password.
-        args.obfuscate = [get_input('Enter a string to obfuscate: '), align]
-    if args.seed == None:
-        seed_num = get_input('Enter number of seeds: ', 'int')
-        seeds = []
-        for i in xrange(seed_num):
-            seeds.append(get_input('Enter seed #%s: ' % str(i + 1)))
-        seed = ''.join(seeds)
-    else:
-        seed = args.seed
-
+        # For obvious reasons we don't want to print the password in plaintext.
+        args.clipboard = True
+    # The -o and -g options are not supposed to interact with any options.
+    if args.obfuscate is None:
+        if args.interactive:
+            obfuscate(get_input('Enter the password to obfuscate: '))
+        else:
+            obfuscate(args.obfuscate)
+        sys.exit()
+    elif args.obfuscate is not False:
+        obfuscate(args.obfuscate)
+        sys.exit()
+    if args.gauge is None:
+        if args.interactive:
+            gauge_password_strength(get_input('Enter the password: '))
+        else:
+            gauge_password_strength(args.gauge)
+        sys.exit()
+    elif args.gauge is not False:
+        gauge_password_strength(args.gauge)
+        sys.exit()
+    if args.length is None:
+        if args.interactive:
+            args.length = get_input('Enter the length of the password(s): ',
+                                    'int')
+    if args.number is None:
+        if args.interactive:
+            args.number = get_input('Enter the number of passwords: ', 'int')
+    if args.seeds is None:
+        if args.interactive:
+            args.seeds = get_input('Enter the number of seeds: ', 'int')
+    if args.seed is None or isinstance(args.seeds, int):
+        if args.interactive:
+            if args.seeds is False or args.seeds == 1:
+                args.seed = get_input('Enter the seed: ')
+            else:
+                seeds = []
+                for i in xrange(args.seeds):
+                    seeds.append(get_input('Enter seed #%s: ' % str(i + 1)))
+                args.seed = ''.join(seeds)
+    # Setting defaults.
+    if not args.length:
+        args.length = 16
+    if not args.number:
+        args.number = 1
+    if not args.seed:
+        args.seed = None
     passwords = []
     for _ in xrange(args.number):
-        passwords.append(generate_password(base=args.obfuscate,
-                                           seed=seed,
-                                           length=args.length,
-                                           include=args.include,
-                                           exclude=args.exclude))
+        passwords.append(generate_password(seed=args.seed, length=args.length))
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)
-    # NOTE This is pointless ... at the moment passwords can only be printed or
-    # saved to the clipboard so these options should be merged. The following
-    # case is ridiculous and pointless, but exists at the moment to prevent the
-    # password from being printed if the cloak option was used.
     elif not args.cloak:
         print passwords
 
