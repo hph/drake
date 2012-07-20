@@ -177,12 +177,14 @@ def parse_args():
     parser.add_argument('-C', '--cloak', action='store_true',
                         help='''Hide the input and the output. The password(s)
                         are saved to the clipboard.''')
-    parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
-                        default=False,
-                        help='''Gauge the strength of an input password.''')
-    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
-                        default=False,
-                        help='''Obfuscate an input password.''')
+    # Uncomment when the obfuscate and gauge_password_strength functions have
+    # been implemented. 
+    #parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
+    #                    default=False,
+    #                    help='''Obfuscate an input password.''')
+    #parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
+    #                    default=False,
+    #                    help='''Gauge the strength of an input password.''')
     return parser.parse_args()
 
 
@@ -210,8 +212,11 @@ def main():
         raw_input = getpass.getpass
         # For obvious reasons we don't want to print the password in plaintext.
         args.clipboard = True
+    # Uncomment code when the obfuscate and gauge_password_strength functions
+    # have been implemented.
     # The -o and -g options are not supposed to interact with any options, thus
     # we exit the program.
+    '''
     if any([args.obfuscate is None, args.obfuscate is not False]):
         if args.interactive:
             args.obfuscate = get_input('Enter the password to obfuscate: ')
@@ -222,6 +227,7 @@ def main():
             args.gauge = get_input('Enter the password: ')
         gauge_password_strength(args.gauge)
         sys.exit()
+    '''
     if args.length is None:
         if args.interactive:
             args.length = get_input('Enter the length of the password(s): ',
