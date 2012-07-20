@@ -49,7 +49,7 @@ characters and space (95 characters total):
     $ drake
     R&Kp$A/>plqe]c<j
 
-The main point of the program is to generate passwords based on a seeds. Let's
+The main point of the program is to generate passwords based on seeds. Let's
 explore various methods to generate a password for your Gmail account:
 
     $ drake -iS
@@ -60,10 +60,13 @@ explore various methods to generate a password for your Gmail account:
 
 Where the first seed is your master password, to be used with each and every
 password you want to generate and the second seed is your Gmail address. You
-can also specify the number of seeds directly: `drake -iS 2`. Note that if you
-combine options (`-iS` instead of `-i -S`) only the last one may accept a
-value. For example, `-Si` would not work as `-S` can accept a value. Anyway, a
-faster way to do the same thing would be the following:
+can also specify the number of seeds directly (`drake -iS 2`) to skip entering
+the number of seeds after the command. Note that if you combine options (`-iS`
+instead of `-i -S`) only the last one may accept a value. For example, `-Si`
+would not work as `-S` can accept a value. Anyway, a faster way to do the same
+thing would be the following (note that the seed is the same as the two above
+joined together, it's the same thing, since any number of seeds are just joined
+together):
 
     $ drake -s MASTER_PASSWORDGMAIL_ACCOUNT
     uYH`}t5;SKmtl{![
@@ -79,7 +82,23 @@ visible in the history) would be:
 
     $ drake -is
     Enter the seed: MASTER_PASSWORDGMAIL_ACCOUNT
-    Bo9&"mEnD*}"az@1
+    uYH`}t5;SKmtl{![
 
 However, this method requires user input, unlike the previous one, so it can't
-be included in a separate program (for example, a web app).
+be included in a separate program (for example, a web app). These three
+different methods produce the same output because in effect they're equivalent.
+But as mentioned earlier, some are secure while others are quick or can be used
+non-interactively.
+
+Now, all the previous methods have ended by printing everything you enter on
+the screen, which might be a problem. To avoid this, use the `-C` option:
+
+    $ drake -iCs
+    Enter the seed:
+
+Now the password `uYH`}t5;SKmtl{![` is on the clipboard, because the same seed
+was entered even though it is not visible. If you only want to save the
+password to the clipboard directly, you could also do the following:
+
+    $ drake -cs 'MASTER_PASSWORDGMAIL_ACCOUNT'
+
