@@ -76,7 +76,7 @@ explore various methods to generate a password for your Gmail account:
     Enter the number of seeds: 2
     Enter seed #1: MASTER_PASSWORD
     Enter seed #2: GMAIL_ACCOUNT
-    uYH`}t5;SKmtl{![
+    uYHx}t5;SKmtl{![
 
 Where the first seed is your master password, to be used with each and every
 password you want to generate and the second seed is your Gmail address. You
@@ -89,7 +89,7 @@ joined together, it's the same thing, since any number of seeds are just joined
 together):
 
     $ drake -s MASTER_PASSWORDGMAIL_ACCOUNT
-    uYH`}t5;SKmtl{![
+    uYHx}t5;SKmtl{![
 
 By skipping the `-i` option the seed is visible in your bash history but if
 that is not a problem this method is faster. Also note the difference between
@@ -102,7 +102,7 @@ visible in the history) would be:
 
     $ drake -is
     Enter the seed: MASTER_PASSWORDGMAIL_ACCOUNT
-    uYH`}t5;SKmtl{![
+    uYHx}t5;SKmtl{![
 
 However, this method requires user input, unlike the previous one, so it can't
 be included in a separate program (for example, a web app). These three
@@ -116,7 +116,7 @@ the screen, which might be a problem. To avoid this, use the `-C` option:
     $ drake -iCs
     Enter the seed:
 
-Now the password `uYH`}t5;SKmtl{![` is on the clipboard, because the same seed
+Now the password `uYHx}t5;SKmtl{![` is on the clipboard, because the same seed
 was entered even though it is not visible. If you only want to save the
 password to the clipboard directly, you could also do the following:
 
