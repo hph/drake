@@ -124,3 +124,16 @@ password to the clipboard directly, you could also do the following:
 
 This method, just like the previous method, saved the password to the
 clipboard.
+
+If you don't feel like typing all these options you could add an alias to your
+`.bashrc` (bash settings file):
+    
+    alias drake='drake -i'
+
+Or:
+
+    alias drake='drake -iS 2'
+
+Depending on what you want the default options to be. Note that it would be
+wiser to use some other alias than `drake` (such as `cdrake`) since you can't
+disable this without removing the alias.
