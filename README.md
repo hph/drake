@@ -120,6 +120,10 @@ the screen, which might be a problem. To avoid this, use the `-C` option:
     $ drake -iCs
     Enter the seed:
 
+Note that `drake -isC` would not work since, as explained earlier, if you
+combine option flags (`-iCs` vs. `-i -C -s`) at most one can be a non-boolean
+option, and it must be specified last (thus `-iCs` since `-s` is non-boolean).
+The only boolean options are `-i`, `-c` and `-C`.
 Now the password `uYHx}t5;SKmtl{![` is on the clipboard, because the same seed
 was entered even though it is not visible. If you only want to save the
 password to the clipboard directly, you could also do the following:
