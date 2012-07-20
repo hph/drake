@@ -5,6 +5,7 @@ import argparse
 import getpass
 import gtk
 import hashlib
+import math
 import os
 import random
 import string
@@ -141,14 +142,31 @@ def get_input(query, type='str'):
         sys.exit()
 
 
-def obfuscate(password):
-    '''Return obfuscated password.'''
-    pass
+def password_entropy(length, cardinality):
+    '''Return the entropy of of a password in bits based on its length and
+    cardinality.'''
+    return length * math.log(cardinality, 2)
+
+
+def crack_time(entropy, time_per_guess, parallel_guesses):
+    '''Return the average crack time in seconds for a password based on its
+    entropy, the time for each guess and the number of parallel guesses.'''
+    return 0.5 * pow(2, entropy) * time_per_guess / parallel_guesses
 
 
 def gauge_password_strength(password):
     '''Gauge the strength of the input password. Output could be boolean,
     numeric or verbose depending on the options.'''
+    # TODO Detect the cardinality of the password. Assume it's 95 for now if
+    # only for testing purposes.
+    entropy = password_entropy(len(password), 95)
+    seconds = crack_time(entropy, 0.000000001, 1000000)
+    print 'Entropy (assuming a cardinality of 95): %.2f bits' % entropy
+    print 'Cracking time (worst case scenario): %d seconds' % seconds
+
+
+def obfuscate(password):
+    '''Return obfuscated password.'''
     pass
 
 
@@ -177,14 +195,13 @@ def parse_args():
     parser.add_argument('-C', '--cloak', action='store_true',
                         help='''Hide the input and the output. The password(s)
                         are saved to the clipboard.''')
-    # Uncomment when the obfuscate and gauge_password_strength functions have
-    # been implemented. 
+    parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Gauge the strength of an input password.''')
+    # Uncomment when the obfuscate function has been implemented. 
     #parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
     #                    default=False,
     #                    help='''Obfuscate an input password.''')
-    #parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
-    #                    default=False,
-    #                    help='''Gauge the strength of an input password.''')
     return parser.parse_args()
 
 
@@ -212,22 +229,24 @@ def main():
         raw_input = getpass.getpass
         # For obvious reasons we don't want to print the password in plaintext.
         args.clipboard = True
-    # Uncomment code when the obfuscate and gauge_password_strength functions
-    # have been implemented.
     # The -o and -g options are not supposed to interact with any options, thus
     # we exit the program.
+    # Uncomment code when the obfuscate function has been implemented.
     '''
     if any([args.obfuscate is None, args.obfuscate is not False]):
         if args.interactive:
             args.obfuscate = get_input('Enter the password to obfuscate: ')
         obfuscate(args.obfuscate)
         sys.exit()
-    if any([args.gauge is None, args.gauge is not False]):
+    '''
+    if args.gauge is None:
         if args.interactive:
             args.gauge = get_input('Enter the password: ')
+            gauge_password_strength(args.gauge)
+        sys.exit()
+    elif args.gauge is not False:
         gauge_password_strength(args.gauge)
         sys.exit()
-    '''
     if args.length is None:
         if args.interactive:
             args.length = get_input('Enter the length of the password(s): ',

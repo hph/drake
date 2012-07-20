@@ -53,6 +53,7 @@ Type `drake -h` to invoke the help message:
                                option is unnecessary with -C or --cloak.
       -C, --cloak              Hide the input and the output. The password(s)
                                are saved to the clipboard.
+      -g, [STR], --gauge [STR] Gauge the strength of an input password.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
@@ -146,6 +147,17 @@ could also do the following:
 
 This method, just like the previous method, saved the password to the
 clipboard.
+
+To gauge the strength of a password the `-g` flag can be used:
+
+    $ drake -ig
+    Enter the password: 3/~i36GAq=-NfaW9
+    Entropy (assuming a cardinality of 95): 105.12 bits
+    Cracking time (worst case scenario): 22006333432588288000 seconds
+
+The worst case scenario is a million parallel cracking attempts at a billion
+passwords per second. This is a bit too optimistic and shows how strong the
+passwords are.
 
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
