@@ -146,3 +146,7 @@ Or:
 Depending on what you want the default options to be. Note that it would be
 wiser to use some other alias than `drake` (such as `cdrake`) since you can't
 disable this without removing the alias.
+
+Although all these similar but different options may seem to make the interface
+overly complex, they create more possible uses for the program and open
+possibilities and make way for features yet to come.
