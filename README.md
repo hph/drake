@@ -124,9 +124,10 @@ Note that `drake -isC` would not work since, as explained earlier, if you
 combine option flags (`-iCs` vs. `-i -C -s`) at most one can be a non-boolean
 option, and it must be specified last (thus `-iCs` since `-s` is non-boolean).
 The only boolean options are `-i`, `-c` and `-C`.
-Now the password `uYHx}t5;SKmtl{![` is on the clipboard, because the same seed
-was entered even though it is not visible. If you only want to save the
-password to the clipboard directly, you could also do the following:
+In any case, now the password `uYHx}t5;SKmtl{![` is on the clipboard, because
+the same seed as in the previous example was entered even though it is not
+visible. If you only want to save the password to the clipboard directly, you
+could also do the following:
 
     $ drake -cs 'MASTER_PASSWORDGMAIL_ACCOUNT'
 
