@@ -24,7 +24,7 @@ Setup
 Copy and paste the following commands into a terminal window:
     
     git clone git://github.com/haukurpallh/drake.git
-    cp drake/ ~/.drake
+    cp -R drake/ ~/.drake
     chmod +x ~/.drake/drake.py
     sudo ln -s ~/.drake/drake.py /usr/bin/drake
 
