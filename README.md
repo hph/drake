@@ -5,8 +5,6 @@ Various password and encryption utilities with a command-line interface.
 See [Usage examples](https://github.com/haukurpallh/drake#usage-examples) for
 an overview of the features.
 
-![image](http://i.imgur.com/some-image.png)
-
 Setup
 -----
 ### Linux
@@ -49,6 +47,30 @@ characters and space (95 characters total):
     $ drake
     R&Kp$A/>plqe]c<j
 
+To control the number of passwords and their length, use the `-n` and `-l`
+flags:
+
+    $ drake -n 3 -l 20
+    ?THmgt+qc(2Y5c:$,P%\
+    u,^tOEQMhcU#f= b3s|}
+    ~8'8.C)\3*af<lR?xRZ_
+
+Or:
+    
+     drake -n 10 -l 24
+     A[<~K$~ -{l8%@`TUk<m8Gb^
+     /QmDa\wt0}zr>(BQHIU`,ZK+
+     {Jqfhq{if*U(i6LMZ! '2U68
+     EaS7SXk]"iwzhvO+Y}Ur/YbO
+     sD(k$a>?WP%N"Gc4|udXda8@
+     &ZcKjRVc4b4Si-; |+n:!.h5
+     TL+I]:J9hEt:#v,aiM~FOMtg
+     47z(y\D1E:qn8{ /tK':H1=$
+     5C=`ZR*Hl5E\f?*T.Z#1PWYN
+     zNd8U5$Av39m6f5'c~yW~8P9
+
+
+### Advanced features
 The main point of the program is to generate passwords based on seeds. Let's
 explore various methods to generate a password for your Gmail account:
 
@@ -102,3 +124,5 @@ password to the clipboard directly, you could also do the following:
 
     $ drake -cs 'MASTER_PASSWORDGMAIL_ACCOUNT'
 
+This method, just like the previous method, saved the password to the
+clipboard.
