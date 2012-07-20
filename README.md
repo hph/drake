@@ -57,17 +57,17 @@ flags:
 
 Or:
     
-     drake -n 10 -l 24
-     A[<~K$~ -{l8%@`TUk<m8Gb^
-     /QmDa\wt0}zr>(BQHIU`,ZK+
-     {Jqfhq{if*U(i6LMZ! '2U68
-     EaS7SXk]"iwzhvO+Y}Ur/YbO
-     sD(k$a>?WP%N"Gc4|udXda8@
-     &ZcKjRVc4b4Si-; |+n:!.h5
-     TL+I]:J9hEt:#v,aiM~FOMtg
-     47z(y\D1E:qn8{ /tK':H1=$
-     5C=`ZR*Hl5E\f?*T.Z#1PWYN
-     zNd8U5$Av39m6f5'c~yW~8P9
+    $ drake -n 10 -l 24
+    A[<~K$~ -{l8%@`TUk<m8Gb^
+    /QmDa\wt0}zr>(BQHIU`,ZK+
+    {Jqfhq{if*U(i6LMZ! '2U68
+    EaS7SXk]"iwzhvO+Y}Ur/YbO
+    sD(k$a>?WP%N"Gc4|udXda8@
+    &ZcKjRVc4b4Si-; |+n:!.h5
+    TL+I]:J9hEt:#v,aiM~FOMtg
+    47z(y\D1E:qn8{ /tK':H1=$
+    5C=`ZR*Hl5E\f?*T.Z#1PWYN
+    zNd8U5$Av39m6f5'c~yW~8P9
 
 
 ### Advanced features
