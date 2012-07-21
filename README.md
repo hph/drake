@@ -45,6 +45,7 @@ Type `drake -h` to invoke the help message:
 
     optional arguments:
       -h, --help                   show this help message and exit
+      -v, --version                show program's version number and exit
       -l [NUM], --length [NUM]     Password length. The default is 16.
       -n [NUM], --number [NUM]     Number of passwords. The default is 1.
       -S [NUM], --seeds [NUM]      Number of seeds. The default is 1.
