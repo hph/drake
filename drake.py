@@ -233,25 +233,7 @@ def main():
         raw_input = getpass.getpass
         # For obvious reasons we don't want to print the password in plaintext.
         args.clipboard = True
-    # The -o and -g options are not supposed to interact with any options, thus
-    # we exit the program.
-    if args.obfuscate is None:
-        if args.interactive:
-            args.obfuscate = get_input('Enter the password: ')
-            alignment = get_input('Enter the alignment (left/right): ')
-            base = [args.obfuscate, alignment]
-            if len(base[0]) <= 16:
-                print generate_password(base=base)
-            else:
-                print 'Base string too long.'
-        sys.exit()
-    elif args.obfuscate is not False:
-        base = args.obfuscate.split(',')
-        if len(base[0]) <= 16:
-            print generate_password(base=base)
-        else:
-            print 'Base string too long.'
-        sys.exit()
+    # This is not supposed to work with any other options other than -i and -C.
     if args.gauge is None:
         if args.interactive:
             args.gauge = get_input('Enter the password: ')
@@ -260,6 +242,19 @@ def main():
     elif args.gauge is not False:
         gauge_password_strength(args.gauge)
         sys.exit()
+    if args.obfuscate is None:
+        if args.interactive:
+            args.obfuscate = get_input('Enter the password: ')
+            alignment = get_input('Enter the alignment (left/right): ')
+            base = [args.obfuscate, alignment]
+            if len(base[0]) > 16:
+                print 'Base string too long.'
+                sys.exit()
+    elif args.obfuscate is not False:
+        base = args.obfuscate.split(',')
+        if len(base[0]) > 16:
+            print 'Base string too long.'
+            sys.exit()
     if args.length is None:
         if args.interactive:
             args.length = get_input('Enter the length of the password(s): ',
@@ -290,7 +285,10 @@ def main():
     # Necessary here if there are more than one passwords. Fix later.
     random.seed(args.seed)
     for _ in xrange(args.number):
-        passwords.append(generate_password(length=args.length))
+        if base:
+            passwords.append(generate_password(base=base, length=args.length))
+        else:
+            passwords.append(generate_password(length=args.length))
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)
