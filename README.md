@@ -17,7 +17,7 @@ is the only password you have to remember. The second is something that
 identifies the account. That's what makes the program generate different
 passwords for different websites. With the default settings you will generate
 a sixteen-character combination of 95 possible characters. This means that
-there are 95¹⁶ ≃ 4.4³¹ possible passwords.
+the number of possible passwords is 95¹⁶ ≃ 4.4·10³¹.
 
 **For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
 the password directly.*
