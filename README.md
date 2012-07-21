@@ -15,7 +15,9 @@ The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds are
 entered. The first seed is a master password, used for all the websites. This
 is the only password you have to remember. The second is something that
 identifies the account. That's what makes the program generate different
-passwords for different websites.
+passwords for different websites. With the default settings you will generate
+a sixteen-character combination of 95 possible characters. This means that
+there are 95¹⁶ ≃ 4.4³¹ possible passwords.
 
 **For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
 the password directly.*
