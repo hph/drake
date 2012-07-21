@@ -17,6 +17,9 @@ is the only password you have to remember. The second is something that
 identifies the account. That's what makes the program generate different
 passwords for different websites.
 
+**For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
+the password directly.*
+
 Features
 --------
 * Manage passwords as explained above
@@ -41,9 +44,6 @@ below.
 
 Please report bugs or suggest features on the
 [issues page](https://github.com/haukurpallh/drake/issues).
-
-**For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
-the password directly.*
 
 Setup
 -----
