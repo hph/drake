@@ -19,6 +19,7 @@ def authenticate():
 def setup():
     '''Install drake.'''
     authenticate()
+    os.system('rm -rf ~/.drake')
     os.system('cp -Rf ../drake/ ~/.drake')
     os.system('chmod +x ~/.drake/drake.py')
     os.system('ln -fs ~/.drake/drake.py /usr/bin/drake')
