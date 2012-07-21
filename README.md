@@ -123,9 +123,10 @@ flags:
     3X0E>[#ksNO[%4Jg
     Of%W32q)5O,<n~2V
 
-Or if you want a 20-character long password:
+Or if you want a 20-character long password (the `-i` flag is unnecessary):
     
-    $ drake -l 20
+    $ drake -il
+    Enter the length of the password(s): 20
     ".@|,1/MWCbRozd[%T7g
 
 Or combining these two options:
