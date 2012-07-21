@@ -1,12 +1,11 @@
 drake
 =====
-Easily generate strong and unique passwords for every website. The passwords
-are not stored anywhere and can be algorithmically generated on any computer.
-All you need to remember is a single master password, which you will use for
-every website; and something that identifies the account, such as the website
-itself or an email address.
-For example, to generate a password for my Gmail account I might do something
-like this*:
+With drake you can easily generate strong and unique passwords for every
+website. The passwords are not stored anywhere and can be algorithmically
+generated on any computer. All you need to remember is a single master
+password, which you will use for every website; and something that identifies
+the account, such as the website itself or an email address. For example,
+to generate a password for my Gmail account I might do something like this*:
 
     $ drake -iS 2
     Enter seed #1: my master password
