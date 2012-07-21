@@ -11,7 +11,6 @@ import random
 import string
 import sys
 
-
 CHAR_SETS = [string.lowercase, string.uppercase, string.digits,
              string.punctuation, ' ']
 
@@ -59,7 +58,10 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
         else:
             # No special requirements, simply generate the password.
             for _ in xrange(length):
-                password += random.choice(''.join(char_sets))
+                if isinstance(char_sets, list):
+                    password += random.choice(''.join(char_sets))
+                else:
+                    password += random.choice(char_sets)
         if max_objects:
             count = {}
             for char in password:
@@ -170,6 +172,26 @@ def obfuscate(password):
     print password
 
 
+def charsets(sets):
+    '''Return a string with all the characters in the character sets specified
+    in the input.'''
+    chars = {'l': string.lowercase, 'u': string.uppercase, 'd': string.digits,
+             'p': string.punctuation + ' '}
+    error = False
+    final_set = []
+    for char in sets:
+        try:
+            final_set.append(chars[char])
+        except:
+            error = True
+    if error:
+        print 'Only l, u, d and p allowed.'
+    # Ensure that the number of references to a set doesn't affect the number
+    # of characters from the set.
+    # TODO This should be in generate_passwords. Much to do there, do it later.
+    return ''.join(list(set(''.join(final_set))))
+
+
 def parse_args():
     '''Return parsed arguments.'''
     parser = argparse.ArgumentParser(description='drake - password and '
@@ -206,6 +228,15 @@ def parse_args():
                         the interactive flag (-i) use the form
                         "string,alignment" where alignment can be either left
                         or right.''')
+    parser.add_argument('-x', '--character-sets', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Control which character sets are used in the
+                        generator. Available character sets are lowercase and
+                        uppercase characters, digits and all punctuation
+                        symbols. This constitutes all the printable characters,
+                        95 including whitespace (' '). The option can contain
+                        one or all of the initials of the character sets, for
+                        example, use 'lud' for an alphanumeric password.''')
     return parser.parse_args()
 
 
@@ -227,6 +258,17 @@ def main():
     # do something as it is very cluttered, even though only the basic features
     # are present.
     args = parse_args()
+    if args.character_sets is None:
+        if args.interactive:
+            print 'Available character sets:'
+            print 'Lowercase: %s' % string.lowercase
+            print 'Uppercase: %s' % string.uppercase
+            print 'Digits: %s' % string.digits
+            print 'Punctuation symbols: %s' % string.punctuation
+            sets = get_input('Enter the initials of each character set: ')
+            args.character_sets = charsets(sets)
+    elif args.character_sets is not False:
+        args.character_sets = charsets(args.character_sets)
     if args.cloak:
         global raw_input
         # Use getpass instead of raw_input to hide the input from prying eyes.
@@ -242,19 +284,6 @@ def main():
     elif args.gauge is not False:
         gauge_password_strength(args.gauge)
         sys.exit()
-    if args.obfuscate is None:
-        if args.interactive:
-            args.obfuscate = get_input('Enter the password: ')
-            alignment = get_input('Enter the alignment (left/right): ')
-            base = [args.obfuscate, alignment]
-            if len(base[0]) > 16:
-                print 'Base string too long.'
-                sys.exit()
-    elif args.obfuscate is not False:
-        base = args.obfuscate.split(',')
-        if len(base[0]) > 16:
-            print 'Base string too long.'
-            sys.exit()
     if args.length is None:
         if args.interactive:
             args.length = get_input('Enter the length of the password(s): ',
@@ -262,6 +291,21 @@ def main():
     if args.number is None:
         if args.interactive:
             args.number = get_input('Enter the number of passwords: ', 'int')
+    if args.obfuscate is None:
+        if args.interactive:
+            args.obfuscate = get_input('Enter the password: ')
+            alignment = get_input('Enter the alignment (left/right): ')
+            base = [args.obfuscate, alignment]
+            # TODO Use args.length instead of 16.
+            if len(base[0]) > 16:
+                print 'Base string too long.'
+                sys.exit()
+    elif args.obfuscate is not False:
+        base = args.obfuscate.split(',')
+        # TODO Use args.length instead of 16.
+        if len(base[0]) > 16:
+            print 'Base string too long.'
+            sys.exit()
     if args.seeds is None:
         if args.interactive:
             args.seeds = get_input('Enter the number of seeds: ', 'int')
@@ -281,14 +325,17 @@ def main():
         args.number = 1
     if not args.seed:
         args.seed = None
+    if not args.obfuscate:
+        args.obfuscate = None
+    if not args.character_sets:
+        args.character_sets = CHAR_SETS
     passwords = []
     # Necessary here if there are more than one passwords. Fix later.
     random.seed(args.seed)
     for _ in xrange(args.number):
-        if base:
-            passwords.append(generate_password(base=base, length=args.length))
-        else:
-            passwords.append(generate_password(length=args.length))
+        passwords.append(generate_password(base=args.obfuscate,
+                                           length=args.length,
+                                           char_sets=args.character_sets))
     passwords = '\n'.join(passwords)
     if args.clipboard:
         set_clipboard(passwords)

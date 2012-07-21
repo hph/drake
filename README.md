@@ -39,23 +39,44 @@ Usage examples
 Type `drake -h` to invoke the help message:
 
     $ drake -h
-    usage: drake.py [-h] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i] [-c] [-C]
+    usage: drake.py [-h] [-v] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i]
+                    [-c] [-C] [-g [STR]] [-o [STR]] [-x [STR]]
 
     drake - password and encryption utilities
 
     optional arguments:
-      -h, --help                   show this help message and exit
-      -v, --version                show program's version number and exit
-      -l [NUM], --length [NUM]     Password length. The default is 16.
-      -n [NUM], --number [NUM]     Number of passwords. The default is 1.
-      -S [NUM], --seeds [NUM]      Number of seeds. The default is 1.
-      -s [STR], --seed [STR]       The seed for the pseudo-random generator.
-      -i, --interactive            Enter the necessary data interactively. By default all data is entered via the options.
-      -c, --clipboard              Save the password(s) to the clipboard. This option is unnecessary with -C or --cloak.
-      -C, --cloak                  Hide the input and the output. The password(s) are saved to the clipboard.
-      -g, [STR], --gauge [STR]     Gauge the strength of an input password.
-      -o, [STR], --obfuscate [STR] Obfuscate an input password. If not used with the interactive flag (-i) use the form
-                                   "string,alignment" where alignment can be either left or right.
+      -h, --help            show this help message and exit
+      -v, --version         show program's version number and exit
+      -l [NUM], --length [NUM]
+                            Password length. The default is 16.
+      -n [NUM], --number [NUM]
+                            Number of passwords. The default is 1.
+      -S [NUM], --seeds [NUM]
+                            Number of seeds. The default is 1.
+      -s [STR], --seed [STR]
+                            The seed for the pseudo-random generator.
+      -i, --interactive     Enter the necessary data interactively. By default 
+                            all data is entered via the options.
+      -c, --clipboard       Save the password(s) to the clipboard. This option 
+                            is redundant with -C or --cloak.
+      -C, --cloak           Hide the input and the output. The password(s) are
+                            saved to the clipboard.
+      -g [STR], --gauge [STR]
+                            Gauge the strength of an input password.
+      -o [STR], --obfuscate [STR]
+                            Obfuscate an input password. If not used with the
+                            interactive flag (-i) use the form
+                            "string,alignment" where alignment can be either
+                            left or right.
+      -x [STR], --character-sets [STR]
+                            Control which character sets are used in the
+                            generator. Available character sets are lowercase
+                            and uppercase characters, digits and all
+                            punctuation symbols. This constitutes all the
+                            printable characters, 95 including whitespace
+                            (' '). The option can contain one or all of the
+                            initials of the character sets, for example, use
+                            'lud' for an alphanumeric password.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
@@ -150,16 +171,26 @@ could also do the following:
 This method, just like the previous method, saved the password to the
 clipboard.
 
-To gauge the strength of a password the `-g` flag can be used:
+If you don't want or can't (some websites have stupid password policies) use
+all the 95 printable characters used by default, you can use the `-x` option.
+You need to specify the initial(s) (in lowercase) of the character set(s) you
+want to include, l for lowercase, u for uppercase, d for digits and p for
+punctuation and symbols. For an alphanumeric password you would do the
+following:
 
-    $ drake -ig
-    Enter the password: 3/~i36GAq=-NfaW9
-    Entropy (assuming a cardinality of 95): 105.12 bits
-    Cracking time (worst case scenario): 22006333432588288000 seconds
+    $ drake -x lud
+    LkxaotIS6s7vQXBe
 
-The worst case scenario is a million parallel cracking attempts at a billion
-passwords per second. This is a bit too optimistic and shows how strong the
-passwords are.
+Or with the `-i` flag:
+
+    $ drake -ix
+    Available character sets:
+    Lowercase: abcdefghijklmnopqrstuvwxyz
+    Uppercase: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    Digits: 0123456789
+    Punctuation symbols: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    Enter the initials of each character set: dul
+    Ek7qSCWijAT8rZrg
 
 You can obfuscate a simple password with the `-o` flag. For example:
 
@@ -175,6 +206,17 @@ Or without `-i`:
 
 More obfuscation options will be added later.
 
+To gauge the strength of a password the `-g` flag can be used:
+
+    $ drake -ig
+    Enter the password: 3/~i36GAq=-NfaW9
+    Entropy (assuming a cardinality of 95): 105.12 bits
+    Cracking time (worst case scenario): 22006333432588288000 seconds
+
+The worst case scenario is a million parallel cracking attempts at a billion
+passwords per second. This is a bit too optimistic and shows how strong the
+passwords are.
+
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
     
@@ -189,5 +231,5 @@ wiser to use some other alias than `drake` (such as `cdrake`) since you can't
 disable this without removing the alias.
 
 Although all these similar but different options may seem to make the interface
-overly complex, they create more possible uses for the program and open
-possibilities and make way for features yet to come.
+overly complex, the fact that most of them can be used in combination is
+enough to justify it.
