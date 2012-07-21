@@ -17,6 +17,19 @@ is the only password you have to remember. The second is something that
 identifies the account. That's what makes the program generate different
 passwords for different websites.
 
+Features
+--------
+* Every option can be entered both interactively and directly
+* Options to control:
+  * Password length
+  * Number of passwords
+  * Password seed
+  * Included character sets to be selected from (lowercase, uppercase, digits and punctuation)
+  * Save the password(s) to the clipboard
+  * Hide input from prying eyes
+  * Gauge password strength (entropy, cracking time, etc)
+  * Obfuscate a simple password into a more complex one
+
 The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
 below.
