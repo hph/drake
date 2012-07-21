@@ -39,29 +39,21 @@ Usage examples
 Type `drake -h` to invoke the help message:
 
     $ drake -h
-    usage: drake.py [-h] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i] [-c]
-                    [-C]
+    usage: drake.py [-h] [-l [NUM]] [-n [NUM]] [-S [NUM]] [-s [STR]] [-i] [-c] [-C]
 
     drake - password and encryption utilities
 
     optional arguments:
-      -h, --help               show this help message and exit
-      -l [NUM], --length [NUM] Password length. The default is 16.
-      -n [NUM], --number [NUM] Number of passwords. The default is 1.
-      -S [NUM], --seeds [NUM]  Number of seeds. The default is 1.
-      -s [STR], --seed [STR]   The seed for the pseudo-random generator.
-      -i, --interactive        Enter the necessary data interactively. By
-                               default all data is entered via the options.
-      -c, --clipboard          Save the password(s) to the clipboard. This
-                               option is unnecessary with -C or --cloak.
-      -C, --cloak              Hide the input and the output. The password(s)
-                               are saved to the clipboard.
-      -g, [STR], --gauge [STR] Gauge the strength of an input password.
-      -o, [STR], --obfuscate [STR]
-                               Obfuscate an input password. If not used with
-                               the interactive flag (-i) use the form
-                               "string,alignment" where alignment can be either
-                               left or right.
+      -h, --help                   show this help message and exit
+      -l [NUM], --length [NUM]     Password length. The default is 16.
+      -n [NUM], --number [NUM]     Number of passwords. The default is 1.
+      -S [NUM], --seeds [NUM]      Number of seeds. The default is 1.
+      -s [STR], --seed [STR]       The seed for the pseudo-random generator.
+      -i, --interactive            Enter the necessary data interactively. By default all data is entered via the options.
+      -c, --clipboard              Save the password(s) to the clipboard. This option is unnecessary with -C or --cloak.
+      -C, --cloak                  Hide the input and the output. The password(s) are saved to the clipboard.
+      -g, [STR], --gauge [STR]     Gauge the strength of an input password.
+      -o, [STR], --obfuscate [STR] Obfuscate an input password. If not used with the interactive flag (-i) use the form "string,alignment" where alignment can be either left or right.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
