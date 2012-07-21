@@ -60,7 +60,7 @@ Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
 --------------
-### Basic usage
+### Simple features
 Type `drake -h` to invoke the help message:
 
     $ drake -h
@@ -133,6 +133,26 @@ Or combining these two options:
     JH=8Ib|*;5L_J<r>(_f1
     H-#,vGm_Ki %4[ha^{Sg
 
+If you don't want or can't (some websites have stupid password policies) use
+all the 95 printable characters used by default, you can use the `-x` option.
+You need to specify the initial(s) (in lowercase) of the character set(s) you
+want to include, l for lowercase, u for uppercase, d for digits and p for
+punctuation and symbols. For an alphanumeric password you would do the
+following:
+
+    $ drake -x lud
+    LkxaotIS6s7vQXBe
+
+Or with the `-i` flag:
+
+    $ drake -ix
+    Available character sets:
+    Lowercase: abcdefghijklmnopqrstuvwxyz
+    Uppercase: ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    Digits: 0123456789
+    Punctuation symbols: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+    Enter the initials of each character set: dul
+    Ek7qSCWijAT8rZrg
 
 ### Advanced features
 The main point of the program is to generate passwords based on seeds. Let's
@@ -195,27 +215,6 @@ could also do the following:
 
 This method, just like the previous method, saved the password to the
 clipboard.
-
-If you don't want or can't (some websites have stupid password policies) use
-all the 95 printable characters used by default, you can use the `-x` option.
-You need to specify the initial(s) (in lowercase) of the character set(s) you
-want to include, l for lowercase, u for uppercase, d for digits and p for
-punctuation and symbols. For an alphanumeric password you would do the
-following:
-
-    $ drake -x lud
-    LkxaotIS6s7vQXBe
-
-Or with the `-i` flag:
-
-    $ drake -ix
-    Available character sets:
-    Lowercase: abcdefghijklmnopqrstuvwxyz
-    Uppercase: ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    Digits: 0123456789
-    Punctuation symbols: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-    Enter the initials of each character set: dul
-    Ek7qSCWijAT8rZrg
 
 You can obfuscate a simple password with the `-o` flag. For example:
 
