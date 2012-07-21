@@ -21,7 +21,7 @@ The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
 below.
 
-**For a non-interactive invocation use* `drake -s seed1seed2`*, which returns
+**For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
 the password directly.*
 
 Setup
