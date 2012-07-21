@@ -21,7 +21,7 @@ The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
 below.
 
-* *If the program is to be used in a script `drake -s seed1seed2` is better
+**If the program is to be used in a script `drake -s seed1seed2` is better
 since it's not interactive and it returns the password directly.*
 
 Setup
