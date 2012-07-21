@@ -133,8 +133,8 @@ Or combining these two options:
     JH=8Ib|*;5L_J<r>(_f1
     H-#,vGm_Ki %4[ha^{Sg
 
-If you don't want or can't (some websites have stupid password policies) use
-all the 95 printable characters used by default, you can use the `-x` option.
+If you don't want or can't use all the 95 printable characters used by default
+(some websites have stupid password policies), you can use the `-x` option.
 You need to specify the initial(s) (in lowercase) of the character set(s) you
 want to include, l for lowercase, u for uppercase, d for digits and p for
 punctuation and symbols. For an alphanumeric password you would do the
