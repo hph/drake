@@ -4,7 +4,7 @@ Easily generate unique and secure passwords for each website. The passwords
 are not stored anywhere and can algorithmically be generated with the program
 on any computer.
 For example, to generate a password for my Gmail account I might do something
-like this:
+like this*:
 
     $ drake -iS 2
     Enter seed #1: my master password
@@ -20,6 +20,9 @@ passwords for different websites.
 The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
 below.
+
+* *If the program is to be used in a script `drake -s seed1seed2` is better
+since it's not interactive and it returns the password directly.*
 
 Setup
 -----
