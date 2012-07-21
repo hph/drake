@@ -1,23 +1,30 @@
 drake
 =====
-Easily generate unique and secure passwords for each website. The passwords
-are not stored anywhere and can algorithmically be generated with the program
-on any computer.
+Easily generate strong and unique passwords for every website. The passwords
+are not stored anywhere and can be algorithmically generated on any computer.
+All you need to remember is a single master password, which you will use for
+every website; and something that identifies the account, such as the website
+itself or an email address.
 For example, to generate a password for my Gmail account I might do something
 like this*:
 
     $ drake -iS 2
     Enter seed #1: my master password
-    Enter seed #2: me@gmail.com
-    /um0]_uUxx<xoPdp
+    Enter seed #2: gmail
+    78u+%oQ&A0M9tBXy
 
-The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds are
-entered. The first seed is a master password, used for all the websites. This
-is the only password you have to remember. The second is something that
-identifies the account. That's what makes the program generate different
-passwords for different websites. With the default settings you will generate
-a sixteen-character combination of 95 possible characters. This means that
-the number of possible passwords is 95¹⁶ ≃ 4.4·10³¹.
+The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds ("my
+master password" and "gmail" in this case) are entered. The output will be
+completely different when the second seed is changed, for example:
+    
+    $ drake -iS 2
+    Enter seed #1: my master password
+    Enter seed #2: facebook
+    F#,Oqe0\;-L@WTw=
+
+With the default settings you will generate a sixteen-character combination of
+95 possible characters. This means that the number of possible passwords is
+95¹⁶ ≃ 4.4·10³¹.
 
 **For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
 the password directly.*
