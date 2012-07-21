@@ -69,7 +69,6 @@ Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
 --------------
-### Simple features
 Type `drake -h` to invoke the help message:
 
     $ drake -h
@@ -164,7 +163,6 @@ Or with the `-i` flag:
     Enter the initials of each character set: dul
     Ek7qSCWijAT8rZrg
 
-### Advanced features
 The main point of the program is to generate passwords based on seeds. Let's
 explore various methods to generate a password for your Gmail account:
 
