@@ -21,9 +21,9 @@ an overview of the currently available features.
 Setup
 -----
 ### Linux
-Download drake:
+Download drake and change to its directory:
     
-    git clone git://github.com/haukurpallh/drake.git & cd drake
+    git clone git://github.com/haukurpallh/drake.git; cd drake
 
 Install drake:
 
