@@ -167,7 +167,7 @@ def gauge_password_strength(password):
 
 def obfuscate(password):
     '''Return obfuscated password.'''
-    pass
+    print password
 
 
 def parse_args():
@@ -198,10 +198,12 @@ def parse_args():
     parser.add_argument('-g', '--gauge', nargs='?', metavar='STR',
                         default=False,
                         help='''Gauge the strength of an input password.''')
-    # Uncomment when the obfuscate function has been implemented. 
-    #parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
-    #                    default=False,
-    #                    help='''Obfuscate an input password.''')
+    parser.add_argument('-o', '--obfuscate', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Obfuscate an input password. If not used with
+                        the interactive flag (-i) use the form
+                        "string,alignment" where alignment can be either left
+                        or right.''')
     return parser.parse_args()
 
 
@@ -231,14 +233,23 @@ def main():
         args.clipboard = True
     # The -o and -g options are not supposed to interact with any options, thus
     # we exit the program.
-    # Uncomment code when the obfuscate function has been implemented.
-    '''
-    if any([args.obfuscate is None, args.obfuscate is not False]):
+    if args.obfuscate is None:
         if args.interactive:
-            args.obfuscate = get_input('Enter the password to obfuscate: ')
-        obfuscate(args.obfuscate)
+            args.obfuscate = get_input('Enter the password: ')
+            alignment = get_input('Enter the alignment (left/right): ')
+            base = [args.obfuscate, alignment]
+            if len(base[0]) <= 16:
+                print generate_password(base=base)
+            else:
+                print 'Base string too long.'
         sys.exit()
-    '''
+    elif args.obfuscate is not False:
+        base = args.obfuscate.split(',')
+        if len(base[0]) <= 16:
+            print generate_password(base=base)
+        else:
+            print 'Base string too long.'
+        sys.exit()
     if args.gauge is None:
         if args.interactive:
             args.gauge = get_input('Enter the password: ')

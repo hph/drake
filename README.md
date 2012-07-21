@@ -57,6 +57,11 @@ Type `drake -h` to invoke the help message:
       -C, --cloak              Hide the input and the output. The password(s)
                                are saved to the clipboard.
       -g, [STR], --gauge [STR] Gauge the strength of an input password.
+      -o, [STR], --obfuscate [STR]
+                               Obfuscate an input password. If not used with
+                               the interactive flag (-i) use the form
+                               "string,alignment" where alignment can be either
+                               left or right.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
@@ -161,6 +166,20 @@ To gauge the strength of a password the `-g` flag can be used:
 The worst case scenario is a million parallel cracking attempts at a billion
 passwords per second. This is a bit too optimistic and shows how strong the
 passwords are.
+
+You can obfuscate a simple password with the `-o` flag. For example:
+
+    $ drake -io
+    Enter the password: test
+    Enter the alignment (left/right): left
+    test}5S%hUFfui"h
+
+Or without `-i`:
+
+    $ drake -o test,right
+    ZV8G:vY7-'Obtest
+
+More obfuscation options will be added later.
 
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
