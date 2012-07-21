@@ -29,9 +29,7 @@ Install drake:
 
     python setup.py install
 
-Uninstall drake:
-
-    python setup.py uninstall
+Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
 --------------
