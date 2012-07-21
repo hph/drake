@@ -1,22 +1,20 @@
 drake
 =====
-The main reason this program was written to be able to easily generate unique
-and secure passwords for any and every website one might need a password for
-and to be able to do it on any computer without storing the passwords.
-The way this is accomplished is by using a pseudo-random generator to generate
-passwords. Pseudo-random generators need an input called 'seeds' or otherwise
-they would always return the same number. By combining a master password, such
-as 'bingo' and 'gmail' one has the seed 'bingogmail' which can be used to
-generate a 16-character long, extremely secure password (95¹⁶ ≈ 4,4 · 10³¹
-possible passwords for the default settings). Note that the master password
-should be longer than the example given above and it should include uppercase
-and lowercase characters, digits and punctuation symbols including empty space
-(' ').
+Easily generate unique and secure passwords for each website. The passwords
+are not stored anywhere and can algorithmically be generated with the program
+on any computer.
+For example, to generate a password for my Gmail account I might do something
+like this:
 
-The program is fully functional in this respect, but other features have yet to
-be implemented.
-See [Usage examples](https://github.com/haukurpallh/drake#usage-examples) for
-an overview of the currently available features.
+    $ drake -iS 2
+    Enter seed #1: my master password
+    Enter seed #2: me@gmail.com
+    /um0]_uUxx<xoPdp
+
+The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds are
+entered. The various features are explained in detail in the
+[usage examples](https://github.com/haukurpallh/drake#usage-examples) section
+below.
 
 Setup
 -----
