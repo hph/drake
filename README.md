@@ -19,6 +19,7 @@ passwords for different websites.
 
 Features
 --------
+* Manage passwords as explained above
 * Every option can be entered both interactively and directly
 * Options to control:
   * Password length
@@ -29,6 +30,10 @@ Features
   * Hide input from prying eyes
   * Gauge password strength (entropy, cracking time, etc)
   * Obfuscate a simple password into a more complex one
+* Future features include:
+  * Text and file encryption with bcrypt and other algorithms
+  * Encrypted password databases
+  * Password hashing and salting functions
 
 The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
