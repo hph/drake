@@ -19,16 +19,16 @@ def authenticate():
 def setup():
     '''Install drake.'''
     authenticate()
-    os.system('cp -R drake/ ~/.drake')
+    os.system('cp -Rf ../drake/ ~/.drake')
     os.system('chmod +x ~/.drake/drake.py')
-    os.system('ln -s ~/.drake/drake.py /usr/bin/drake')
+    os.system('ln -fs ~/.drake/drake.py /usr/bin/drake')
 
 
 def remove():
     '''Uninstall drake.'''
     authenticate()
     os.system('rm -rf ~/.drake')
-    os.system('rm /usr/bin/drake')
+    os.system('rm -f /usr/bin/drake')
 
 
 def main():
