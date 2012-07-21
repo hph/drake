@@ -12,7 +12,12 @@ like this:
     /um0]_uUxx<xoPdp
 
 The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds are
-entered. The various features are explained in detail in the
+entered. The first seed is a master password, used for all the websites. This
+is the only password you have to remember. The second is something that
+identifies the account. That's what makes the program generate different
+passwords for different websites.
+
+The various features are explained in detail in the
 [usage examples](https://github.com/haukurpallh/drake#usage-examples) section
 below.
 
