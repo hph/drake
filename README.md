@@ -25,8 +25,8 @@ With the default settings you will generate a sixteen-character combination of
 95 possible characters. This means that the number of possible passwords is
 95¹⁶ ≃ 4.4·10³¹.
 
-**For a non-interactive invocation use* `drake -s "seed1seed2"`*, which returns
-the password directly.*
+**For a non-interactive invocation use* `drake -s "my master passwordgmail"`*,
+which returns the password directly.*
 
 Features
 --------
@@ -36,7 +36,8 @@ Features
   * Password length
   * Number of passwords
   * Password seed
-  * Included character sets to be selected from (lowercase, uppercase, digits and punctuation)
+  * Included character sets to be selected from (lowercase, uppercase, digits
+    and punctuation)
   * Save the password(s) to the clipboard
   * Hide input from prying eyes
   * Gauge password strength (entropy, cracking time, etc)
