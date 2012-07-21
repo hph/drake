@@ -53,7 +53,8 @@ Type `drake -h` to invoke the help message:
       -c, --clipboard              Save the password(s) to the clipboard. This option is unnecessary with -C or --cloak.
       -C, --cloak                  Hide the input and the output. The password(s) are saved to the clipboard.
       -g, [STR], --gauge [STR]     Gauge the strength of an input password.
-      -o, [STR], --obfuscate [STR] Obfuscate an input password. If not used with the interactive flag (-i) use the form "string,alignment" where alignment can be either left or right.
+      -o, [STR], --obfuscate [STR] Obfuscate an input password. If not used with the interactive flag (-i) use the form
+                                   "string,alignment" where alignment can be either left or right.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
