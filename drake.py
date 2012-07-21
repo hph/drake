@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding=utf8
 
+# TODO Optimize by moving import inside functions.
 import argparse
 import getpass
 import gtk
@@ -19,6 +20,8 @@ def generate_password(base=None, seed=None, length=16, char_sets=CHAR_SETS,
                       min_objects=None, max_objects=None, include=None,
                       exclude=None):
     '''Generate a password based on various options.'''
+    # NOTE This function contains code that is no longer required. It is not
+    # very well structured either. It would be wise to rewrite it.
     password = ''
     if base:
         # A substring of the password.
