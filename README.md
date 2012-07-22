@@ -137,7 +137,7 @@ Or if you want a 20-character long password (the `-i` flag is unnecessary):
 
 Or combining these two options:
 
-    $ drake -l 3 -l 20
+    $ drake -n 3 -l 20
     lE32MZvL:PfT2TG ]@1b
     JH=8Ib|*;5L_J<r>(_f1
     H-#,vGm_Ki %4[ha^{Sg
