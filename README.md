@@ -12,7 +12,7 @@ to generate a password for my Gmail account I might do something like this*:
     Enter seed #2: gmail
     78u+%oQ&A0M9tBXy
 
-The output, `/um0]_uUxx<xoPdp`, will always be the same if the same seeds ("my
+The output, `78u+%oQ&A0M9tBXy`, will always be the same if the same seeds ("my
 master password" and "gmail" in this case) are entered. The output will be
 completely different when the second seed is changed, for example:
     
