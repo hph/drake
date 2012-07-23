@@ -27,7 +27,7 @@ With the default settings you will generate a sixteen-character combination of
 
 **For a non-interactive invocation use* `drake -s "my master passwordgmail"`*,
 which returns the password directly.*
-Also please take note that this is presently **NOT** a cryptographically secure program.
+Also please take note that this is presently __NOT__ a cryptographically secure program.
 
 Features
 --------
