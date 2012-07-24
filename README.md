@@ -68,6 +68,8 @@ Install drake:
 
     python setup.py install
 
+This will overwrite old versions of the program.
+
 Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
