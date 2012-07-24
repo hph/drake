@@ -1,5 +1,5 @@
 drake
-=====
+-----
 ### [Features](https://github.com/haukurpallh/drake#features) ‒ [Setup](https://github.com/haukurpallh/drake#setup) ‒ [FAQ](https://github.com/haukurpallh/drake#faq) ‒ [Examples](https://github.com/haukurpallh/drake#usage-examples)
 With drake you can easily generate strong and unique passwords for every
 website. The passwords are not stored anywhere and can be algorithmically
