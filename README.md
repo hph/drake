@@ -72,6 +72,20 @@ This will overwrite existing program files if any so it can be used to update as
 
 Execute `python setup.py uninstall` to uninstall drake.
 
+FAQ
+---
+* (How do I list all the commands?)[https://github.com/haukurpallh/drake#invoking-the-help-message]
+* (How can I generate a password?)[https://github.com/haukurpallh/drake#generating-a-one-time-password-without-a-seed]
+* (How can I control the length or number of passwords?)[https://github.com/haukurpallh/drake#controlling-the-number-of-passwords-and-password-length]
+* (How can I generate a password without symbols?)[https://github.com/haukurpallh/drake#controlling-which-character-sets-are-available]
+* (How do the seeds work?)[https://github.com/haukurpallh/drake#generating-a-password-from-a-seed]
+* (What if someone is looking over my shoulder while I enter seeds and options?)[https://github.com/haukurpallh/drake#hiding-the-input-and-saving-the-output-to-the-clipboard]
+* (How do I save the password to the clipboard)[https://github.com/haukurpallh/drake#hiding-the-input-and-saving-the-output-to-the-clipboard]
+* (How can I obfuscate a password?)[https://github.com/haukurpallh/drake#obfuscating-a-password]
+* (How can I know if the password is strong?)[https://github.com/haukurpallh/drake#gauging-the-strength-of-a-password]
+* (How does the --roll command work?)[https://github.com/haukurpallh/drake#rolling-dice]
+* (Do I have to enter all these options every time?)[https://github.com/haukurpallh/drake#saving-commonly-used-commands-as-aliases]
+
 Usage examples
 --------------
 ### Invoking the help message
