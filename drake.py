@@ -193,7 +193,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='drake - password and '
                                                  'encryption utilities')
     parser.add_argument('-v', '--version', action='version',
-                        version='drake 0.1')
+                        version='drake 0.2')
     parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
                         default=False, type=int,
                         help='''Password length. The default is 16.''')

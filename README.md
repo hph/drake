@@ -44,6 +44,7 @@ Features
   * Hide input from prying eyes
   * Gauge password strength (entropy, cracking time, etc)
   * Obfuscate a simple password into a more complex one
+  * Roll dice: randomly select an item from a list
 * Future features include:
   * Text and file encryption with bcrypt and other algorithms
   * Encrypted password databases
