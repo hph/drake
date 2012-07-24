@@ -1,13 +1,7 @@
 #!/usr/bin/python
 #coding=utf8
 
-# TODO Optimize by moving import inside functions.
-import argparse
-import getpass
 import gtk
-import hashlib
-import math
-import os
 import random
 import string
 import sys
@@ -108,13 +102,15 @@ def set_clipboard(contents):
 def generate_salt(bits=128):
     '''Generate a salt using a cryptologically secure pseudorandom number
     generator.'''
+    from os import urandom
     bytes = int(bits / 8.0)
-    return os.urandom(bytes).encode('hex')
+    return urandom(bytes).encode('hex')
 
 
 def hash_password(password, salt):
     '''Hash the password and save it in the database.'''
-    return hashlib.sha256(salt + password).hexdigest()
+    from hashlib import sha256
+    return sha256(salt + password).hexdigest()
 
 
 def save_hash(data, filename='.pwdhashes'):
@@ -150,7 +146,8 @@ def get_input(query, type='str'):
 def password_entropy(length, cardinality):
     '''Return the entropy of of a password in bits based on its length and
     cardinality.'''
-    return length * math.log(cardinality, 2)
+    from math import log
+    return length * log(cardinality, 2)
 
 
 def crack_time(entropy, time_per_guess, parallel_guesses):
@@ -168,11 +165,6 @@ def gauge_password_strength(password):
     seconds = crack_time(entropy, 0.000000001, 1000000)
     print 'Entropy (assuming a cardinality of 95): %.2f bits' % entropy
     print 'Cracking time (worst case scenario): %d seconds' % seconds
-
-
-def obfuscate(password):
-    '''Return obfuscated password.'''
-    print password
 
 
 def charsets(sets):
@@ -197,6 +189,7 @@ def charsets(sets):
 
 def parse_args():
     '''Return parsed arguments.'''
+    import argparse
     parser = argparse.ArgumentParser(description='drake - password and '
                                                  'encryption utilities')
     parser.add_argument('-v', '--version', action='version',
@@ -240,12 +233,15 @@ def parse_args():
                         95 including whitespace (' '). The option can contain
                         one or all of the initials of the character sets, for
                         example, use 'lud' for an alphanumeric password.''')
+    parser.add_argument('-r', '--roll', nargs='?', metavar='STR',
+                        default=False,
+                        help='''Select any of a comma-separated list of
+                        values or strings.''')
     return parser.parse_args()
 
 
 def generate_wordlike_strings():
-    '''Used with generate_password() to generate an easier to remember
-    password.'''
+    '''Separate feature to generate passwords that are easier to remember.'''
     pass
 
 
@@ -261,6 +257,17 @@ def main():
     # do something as it is very cluttered, even though only the basic features
     # are present.
     args = parse_args()
+    if args.roll is None:
+        if args.interactive:
+            choices = get_input('Enter the choices: ').split(',')
+            print random.choice(choices)
+            sys.exit()
+        else:
+            sys.exit()
+    elif args.roll is not False:
+        choices = args.roll.split(',')
+        print random.choice(choices)
+        sys.exit()
     if args.character_sets is None:
         if args.interactive:
             print 'Available character sets:'
@@ -273,9 +280,10 @@ def main():
     elif args.character_sets is not False:
         args.character_sets = charsets(args.character_sets)
     if args.cloak:
+        from getpass import getpass
         global raw_input
         # Use getpass instead of raw_input to hide the input from prying eyes.
-        raw_input = getpass.getpass
+        raw_input = getpass
         # For obvious reasons we don't want to print the password in plaintext.
         args.clipboard = True
     # This is not supposed to work with any other options other than -i and -C.

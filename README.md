@@ -112,6 +112,9 @@ Type `drake -h` to invoke the help message:
                             (' '). The option can contain one or all of the
                             initials of the character sets, for example, use
                             'lud' for an alphanumeric password.
+      -r [STR], --roll [STR]
+                            Select any of a comma-separated list of values or
+                            strings.
 
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
@@ -250,6 +253,18 @@ To gauge the strength of a password the `-g` flag can be used:
 The worst case scenario is a million parallel cracking attempts at a billion
 passwords per second. This is a bit too optimistic and shows how strong the
 passwords are.
+
+There's a feature similar to rolling dice. Call `drake -ir` to select any of a
+comma-separated list of values or strings, for example:
+
+    drake -ir
+    Enter the choices: 1,2,3,4,5,6
+    5
+
+Or:
+
+    drake -r black,grey,white
+    black
 
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
