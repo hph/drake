@@ -25,10 +25,10 @@ With the default settings you will generate a sixteen-character combination of
 95 possible characters. This means that the number of possible passwords is
 95¹⁶ ≃ 4.4·10³¹.
 
+Please take note that this is not intended as a cryptologically secure program.
+
 **For a non-interactive invocation use* `drake -s "my master passwordgmail"`*,
 which returns the password directly.*
-
-Please take note that this is not intended as a cryptologically secure program.
 
 Features
 --------
