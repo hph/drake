@@ -74,7 +74,7 @@ Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
 --------------
-###### Invoking the help message
+### Invoking the help message
 Type `drake -h` to invoke the help message:
 
     $ drake -h
@@ -125,7 +125,7 @@ that what's inside them is optional. If you run `drake -l` for example, the
 `-l` flag is ignored because it doesn't have a value (as opposed to `drake -l
 16`). However, `drake -il` will assume interactive mode and ask for a value.
 
-###### Generating a one-time password without a seed
+### Generating a one-time password without a seed
 If no seed is specified the output will be a 16-character long password
 containing lowercase and uppercase characters, digits and punctuation symbols
 including space (95 characters total). Currently Python's `random` module is
@@ -135,7 +135,7 @@ secure, as soon as possible.
     $ drake
     R&Kp$A/>plqe]c<j
 
-###### Controlling the number of passwords and password length
+### Controlling the number of passwords and password length
 To control the number of passwords and their length, use the `-n` and `-l`
 flags:
 
@@ -157,7 +157,7 @@ Or combining these two options:
     JH=8Ib|*;5L_J<r>(_f1
     H-#,vGm_Ki %4[ha^{Sg
 
-###### Controlling which character sets are available
+### Controlling which character sets are available
 If you don't want or can't use all the 95 printable characters used by default
 (some websites have stupid password policies), you can use the `-x` option.
 You need to specify the initial(s) (in lowercase) of the character set(s) you
@@ -179,7 +179,7 @@ Or with the `-i` flag:
     Enter the initials of each character set: dul
     Ek7qSCWijAT8rZrg
 
-###### Generating a password from a seed
+### Generating a password from a seed
 The main point of the program is to generate passwords based on seeds. Let's
 explore various methods to generate a password for your Gmail account:
 
@@ -221,7 +221,7 @@ different methods produce the same output because in effect they're equivalent.
 But as mentioned earlier, some are secure while others are quick or can be used
 non-interactively.
 
-###### Hiding the input and saving the output to the clipboard
+### Hiding the input and saving the output to the clipboard
 Now, all the previous methods have ended by printing everything you enter on
 the screen, which might be a problem. To avoid this, use the `-C` option:
 
@@ -242,7 +242,7 @@ could also do the following:
 This method, just like the previous method, saved the password to the
 clipboard.
 
-###### Obfuscating a password
+### Obfuscating a password
 You can obfuscate a simple password with the `-o` flag. For example:
 
     $ drake -io
@@ -257,7 +257,7 @@ Or without `-i`:
 
 More obfuscation options will be added later.
 
-###### Gauging the strength of a password
+### Gauging the strength of a password
 To gauge the strength of a password the `-g` flag can be used:
 
     $ drake -ig
@@ -269,7 +269,7 @@ The worst case scenario is a million parallel cracking attempts at a billion
 passwords per second. This is a bit too optimistic and shows how strong the
 passwords are.
 
-###### Roll dice
+### Roll dice
 There's a feature similar to rolling dice. Call `drake -ir` to select any of a
 comma-separated list of values or strings, for example:
 
@@ -282,7 +282,7 @@ Or:
     drake -r black,grey,white
     black
 
-###### Saving common uses to a command
+### Saving common uses to a command
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
     
