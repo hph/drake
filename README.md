@@ -119,7 +119,7 @@ Type `drake -h` to invoke the help message:
                             Select any of a comma-separated list of values or
                             strings.
 
-# Generate a one-time password
+###### Generate a one-time password without a seed
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
 `-l` flag is ignored because it doesn't have a value (as opposed to `drake -l
@@ -151,7 +151,6 @@ Or combining these two options:
     JH=8Ib|*;5L_J<r>(_f1
     H-#,vGm_Ki %4[ha^{Sg
 
-## Generate a password from seeds
 If you don't want or can't use all the 95 printable characters used by default
 (some websites have stupid password policies), you can use the `-x` option.
 You need to specify the initial(s) (in lowercase) of the character set(s) you
@@ -173,6 +172,7 @@ Or with the `-i` flag:
     Enter the initials of each character set: dul
     Ek7qSCWijAT8rZrg
 
+###### Generate a password from a seed
 The main point of the program is to generate passwords based on seeds. Let's
 explore various methods to generate a password for your Gmail account:
 
@@ -214,6 +214,7 @@ different methods produce the same output because in effect they're equivalent.
 But as mentioned earlier, some are secure while others are quick or can be used
 non-interactively.
 
+###### Hiding the input and saving the output to the clipboard
 Now, all the previous methods have ended by printing everything you enter on
 the screen, which might be a problem. To avoid this, use the `-C` option:
 
@@ -234,6 +235,7 @@ could also do the following:
 This method, just like the previous method, saved the password to the
 clipboard.
 
+###### Obfuscating a password
 You can obfuscate a simple password with the `-o` flag. For example:
 
     $ drake -io
@@ -248,6 +250,7 @@ Or without `-i`:
 
 More obfuscation options will be added later.
 
+###### Gauging the strength of a password
 To gauge the strength of a password the `-g` flag can be used:
 
     $ drake -ig
@@ -259,6 +262,7 @@ The worst case scenario is a million parallel cracking attempts at a billion
 passwords per second. This is a bit too optimistic and shows how strong the
 passwords are.
 
+###### Roll dice
 There's a feature similar to rolling dice. Call `drake -ir` to select any of a
 comma-separated list of values or strings, for example:
 
@@ -271,6 +275,7 @@ Or:
     drake -r black,grey,white
     black
 
+###### Saving common uses to a command
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
     
