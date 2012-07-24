@@ -81,7 +81,7 @@ FAQ
 * [How do the seeds work?](https://github.com/haukurpallh/drake#generating-a-password-from-a-seed)
 * [What if someone is looking over my shoulder while I enter seeds and options?](https://github.com/haukurpallh/drake#hiding-the-input-and-saving-the-output-to-the-clipboard)
 * [How do I save the password to the clipboard](https://github.com/haukurpallh/drake#hiding-the-input-and-saving-the-output-to-the-clipboard)
-* [What is the --obfuscate feature?](https://github.com/haukurpallh/drake#obfuscating-a-password)
+* [What is the --obfuscate option?](https://github.com/haukurpallh/drake#obfuscating-a-password)
 * [How can I know if the password is strong?](https://github.com/haukurpallh/drake#gauging-the-strength-of-a-password)
 * [How does the --roll command work?](https://github.com/haukurpallh/drake#rolling-dice)
 * [Do I have to enter all these options every time?](https://github.com/haukurpallh/drake#saving-commonly-used-commands-as-aliases)
