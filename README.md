@@ -269,7 +269,7 @@ The worst case scenario is a million parallel cracking attempts at a billion
 passwords per second. This is a bit too optimistic and shows how strong the
 passwords are.
 
-### Roll dice
+### Rolling dice
 There's a feature similar to rolling dice. Call `drake -ir` to select any of a
 comma-separated list of values or strings, for example:
 
@@ -282,7 +282,7 @@ Or:
     drake -r black,grey,white
     black
 
-### Saving common uses to a command
+### Saving commonly used commands as aliases
 If you don't feel like typing all these options you could add an alias to your
 `.bashrc` (bash settings file):
     
