@@ -74,6 +74,7 @@ Execute `python setup.py uninstall` to uninstall drake.
 
 Usage examples
 --------------
+###### Invoking the help message
 Type `drake -h` to invoke the help message:
 
     $ drake -h
@@ -119,17 +120,22 @@ Type `drake -h` to invoke the help message:
                             Select any of a comma-separated list of values or
                             strings.
 
-###### Generating a one-time password without a seed
 This message lists all the available options at this time. The brackets mean
 that what's inside them is optional. If you run `drake -l` for example, the
 `-l` flag is ignored because it doesn't have a value (as opposed to `drake -l
-16`). However, `drake -il` will assume interactive mode and ask for a value. If
-no option is specified, the output is a 16-character long password containing
-all printable characters and space (95 characters total):
+16`). However, `drake -il` will assume interactive mode and ask for a value.
+
+###### Generating a one-time password without a seed
+If no seed is specified the output will be a 16-character long password
+containing lowercase and uppercase characters, digits and punctuation symbols
+including space (95 characters total). Currently Python's `random` module is
+used but it will be raplaced by `os.urandom`, which is cryptologically
+secure, as soon as possible.
 
     $ drake
     R&Kp$A/>plqe]c<j
 
+###### Controlling the number of passwords and password length
 To control the number of passwords and their length, use the `-n` and `-l`
 flags:
 
