@@ -31,7 +31,8 @@ Please take note that this is a programming exercise and in no way a
 cryptologically secure program, at least for the time being.
 
 **For a non-interactive invocation use* `drake -s "my master passwordgmail"`*,
-which returns the password directly.*
+which returns the password directly. Also, the space in `-iS 2` is unnecessary
+and used here only for clarity. `drake -iS2` is completely equivalent.*
 
 Features
 --------
