@@ -190,8 +190,14 @@ def charsets(sets):
 def parse_args():
     '''Return parsed arguments.'''
     import argparse
-    parser = argparse.ArgumentParser(description='drake - password and '
-                                                 'encryption utilities')
+    # Ensures that the help message is correctly aligned with the commands.
+    form = lambda prog: argparse.HelpFormatter(prog, max_help_position=36)
+    parser = argparse.ArgumentParser(prog='drake',
+                                     formatter_class=form,
+                                     description='''drake - password management
+                                                 utilities''',
+                                     epilog='''drake returns 0 if there was no
+                                     error''')
     parser.add_argument('-v', '--version', action='version',
                         version='drake 0.2')
     parser.add_argument('-l', '--length', nargs='?', metavar='NUM',
