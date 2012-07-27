@@ -291,13 +291,13 @@ passwords are.
 There's a feature similar to rolling dice. Call `drake -ir` to select any of a
 comma-separated list of values or strings, for example:
 
-    drake -ir
+    $ drake -ir
     Enter the choices: 1,2,3,4,5,6
     5
 
 Or:
 
-    drake -r black,grey,white
+    $ drake -r black,grey,white
     black
 
 ### Saving commonly used commands as aliases
