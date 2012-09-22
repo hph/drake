@@ -5,7 +5,7 @@ website. The passwords are not stored anywhere and can be algorithmically
 generated on any computer. All you need to remember is a single master
 password, which you will use for every website; and something that identifies
 the account, such as the website itself or an email address. Execute `drake` to
-generate a simple password or `drake -h` for a full list of options.
+generate a password or `drake -h` for a full list of options.
 
 ---
 
