@@ -9,5 +9,5 @@ generate a password or `drake -h` for a full list of options.
 
 ---
 
-Head over to the [documentation page](http://github.com/docs/drake) for more
+Head over to the [documentation page](http://hph.github.com/docs/drake) for more
 details.
